@@ -113,6 +113,7 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
             }
         }
         clsPool.injectMethods(null, null)
+//        clsPool.injectInsertInfo(null, null)
         injectInsertClass()
         clsPool.release()
         def cost = (System.currentTimeMillis() - startTime) / 1000
@@ -133,6 +134,7 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
                         clsPool.appendClassPathAndCached(it, false)
                     } else {
                         clsPool.injectMethods(it.absolutePath, directoryInput.file.path)
+//                        clsPool.injectInsertInfo(it.absolutePath, directoryInput.file.path)
                     }
                 }
                 if (modify && "TestAsm.class" == name) {
@@ -238,7 +240,6 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
     }
 
     void injectInsertClass() {
-        println "map : ${clsPool.insertMap}"
         jarList.each {
             File src = new File(it)
             File tempFile = new File(it + "_tmp")
