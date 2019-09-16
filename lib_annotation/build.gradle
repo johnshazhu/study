@@ -1,0 +1,25 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+group = "com.lib.annotation"
+version = "$lib_annotation_version"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+//            repository(url: "$maven_url_release") {
+//                authentication(userName: "$maven_user", password: "$maven_pw")
+//            }
+            // 本地的Maven地址
+             repository(url: uri("../repo"))
+        }
+    }
+}

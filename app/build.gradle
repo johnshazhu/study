@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.lib.annotation.gradle.plugin'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion '29.0.0'
+    dataBinding {
+        enabled = true
+    }
+    defaultConfig {
+        applicationId "com.kotlin.study"
+        minSdkVersion 21
+        //targetSdkVersion 29时访问外部存储文件需要使用统一存储访问服务
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$androidx_core_version"
+    implementation "androidx.core:core-ktx:$androidx_core_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(':lib_core')
+    implementation project(':lib_database')
+    implementation project(':lib_okhttp')
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "android.arch.persistence.room:rxjava2:$rxjava2_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.lib.annotation:lib_annotation:$lib_annotation_version"
+    implementation "org.javassist:javassist:$javassist_version"
+}

@@ -1,0 +1,30 @@
+{
+  "appDevice": {
+    "accountId": "295165625439002624",
+    "android_id": "eb24c4f0d556ce8",
+    "appcode": "YUXY",
+    "birthday": "2019-03-16 00:00:00",
+    "build_serial": "170040f8",
+    "channel": "unknown",
+    "clientversion": "7.4",
+    "deviceno": "B0:E2:35:82:F0:A9",
+    "deviceuuid": "655d8e04-bdf2-4385-9c28-f5095b6d8558",
+    "expectedDate": "2019-04-13 00:00:00",
+    "hgestation": 0,
+    "imei": "861980031328215",
+    "loginType": -1,
+    "ostype": 2,
+    "osversion": "6.0.1",
+    "packageName": "com.drcuiyutao.babyhealth",
+    "prematureOpen": 0,
+    "sign": "14d6a759940b9bbfa3547fafad181927",
+    "t": "1564571402559",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlzc3VlciI6bnVsbCwiaWF0VGltZSI6MTU2NDU2NTg4MzU1NX0.eyJpbXBsaWNpdExvZ2luIjoiZmFsc2UiLCJhY2NvdW50SWQiOiIyOTUxNjU2MjU0MzkwMDI2MjQiLCJsb2dpblR5cGUiOiJ1c2VyIiwibG9nZ2VyIjoib3JnLnNsZjRqLmltcGwuTG9nNGpMb2dnZXJBZGFwdGVyKGNvbS55eHkuZnJhbWV3b3JrLm1vZGVsLmp3dC5Kd3RQYXlsb2FkKSIsImFwcENvZGUiOiJZVVhZIiwiZGV2aWNlbm8iOiJCMDpFMjozNTo4MjpGMDpBOSIsImV4cCI6MTU2NDU4NzQ4MywiaWF0IjoxNTY0NTY1ODgzLCJqdGkiOiIwIiwibWVtYmVySWQiOiI4NiJ9.S8ACcRj67Y4u8H5yfTkbX-XjXFuvpJMW851w_EexNEg",
+    "userID": 86,
+    "yxyskin": 0
+  },
+  "childId": "325306828079693824",
+  "cts": -1,
+  "memberId2": "86",
+  "uid": 86
+}

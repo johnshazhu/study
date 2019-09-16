@@ -1,0 +1,36 @@
+{
+  "code": 1,
+  "data": {
+    "appConfigSwitchList": [{
+      "status": 0,
+      "type": 1
+    }, {
+      "status": 0,
+      "type": 2
+    }, {
+      "status": 0,
+      "type": 3
+    }],
+    "list": [{
+      "tourl": "{\"cancelText\":\"先不了\",\"title\":\"育学园新版本升级！\",\"type\":0,\"okText\":\"马上升级\",\"version\":70203,\"content\":\"增加分龄的宝宝变化全知道，任务、课程、饮食、教育栏目，每日更新。\\n还有阶段总结月报周报，宝宝生长发育一目了然。\\n自动计算当前距上次喂奶时间，查看记录更方便。\\n生命早期1000天，从孕期到育儿专业护航宝宝每一天~\",\"url\":\"http://audio.qn.ivybaby.me/app-official-release-v7.2.3-official_web.apk\"}",
+      "type": 145
+    }, {
+      "tourl": "{\"path\":\"/dns/switch?close=1\"}",
+      "type": 134
+    }],
+    "mallTab": {
+      "selectedIco": "http://qn.ivybaby.me/null",
+      "skipModel": "{\"type\":9,\"tourl\":\"https://j.youzan.com/7DitH9\"}",
+      "title": "商城",
+      "unSelectedIco": ""
+    },
+    "vipTab": {
+      "selectedIco": "https://public.qn.ivybaby.me/default/default/20190523170530/file-1977472c-7f9e-4aa1-9842-fb5cfa9c3a6a.png",
+      "skipModel": "{\"type\":101,\"tourl\":\"{\\\"index\\\":3,\\\"subindex\\\":0}\"}",
+      "title": "VIP会员",
+      "unSelectedIco": "https://public.qn.ivybaby.me/default/default/20190626192729/file-79afcef6-f11e-4f0b-ae54-55ddfe917df4.png"
+    }
+  },
+  "msg": "OK",
+  "routers": []
+}
