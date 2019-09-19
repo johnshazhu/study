@@ -5,7 +5,7 @@ import com.drcuiyutao.lib.util.TestA;
 import com.lib.annotation.Insert;
 
 public class TestInsertClass {
-//    @Insert(target = TestA.class, name = "test", replace = true)
+    @Insert(target = TestA.class, name = "test", replace = true)
     public void test() {
         Log.i("TestInsertClass", "insert test");
     }

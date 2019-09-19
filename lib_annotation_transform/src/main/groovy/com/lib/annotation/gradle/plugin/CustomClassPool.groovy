@@ -8,6 +8,7 @@ import javassist.CtField
 import javassist.CtMember
 import javassist.CtMethod
 import javassist.Modifier
+import javassist.NotFoundException
 import javassist.bytecode.AnnotationsAttribute
 import javassist.bytecode.FieldInfo
 import javassist.bytecode.MethodInfo
@@ -27,6 +28,8 @@ class CustomClassPool extends ClassPool {
     def clsList = []
     //记录类注入代码列表信息的Map. key : class name, value : List<InsertInfo>
     def insertInfoMap = [:]
+    //注入目标Map
+    def targetMap = [:]
 
     CustomClassPool(boolean useDefaultPath) {
         super(useDefaultPath)
@@ -36,60 +39,130 @@ class CustomClassPool extends ClassPool {
         return map[path]
     }
 
-    void appendClassPathAndCached(File file, boolean isJar) {
-        ClassPath path = appendClassPath(file.absolutePath)
-        pathList.add(path)
+    String getInjectTargetClassName(CtMember member) {
+        Insert annotation = member.getAnnotation(Insert.class)
+        String clsName = annotation.classPath()
+        if (clsName == null || clsName.length() == 0) {
+            clsName = Util.getAnnotationClassValue(member, Insert.class, "target")
+        }
+        return clsName
+    }
 
-        if (!isJar) {
+    void collectUsedClass(File file, String entryName, CtClass ctClass) {
+        if (ctClass == null) {
             InputStream inputStream = new FileInputStream(file)
-            CtClass ctClass = makeClass(inputStream)
-            map[file.absolutePath] = ctClass.name
+            ctClass = makeClass(inputStream)
 
             if (inputStream != null) {
                 inputStream.close()
             }
-
-            checkInsertCode(file.absolutePath, ctClass)
         }
+
+        //遍历当前class文件中的字段, 找到有注入注解的字段, 添加到注入列表中
+        traverseMembers(file, entryName, ctClass.getDeclaredFields(), ctClass.name)
+
+        //遍历当前class文件中的方法, 找到有注入注解的方法, 添加到注入列表中
+        traverseMembers(file, entryName, ctClass.getMethods(), ctClass.name)
+
+        ctClass.detach()
+    }
+
+    void traverseMembers(File file, String entryName, CtMember[] ctMembers, String ctClassName) {
+        if (ctMembers.length > 0) {
+            boolean haveInjectCode = false
+            for (CtMember member : ctMembers) {
+                if (member.hasAnnotation(Insert.class)) {
+                    haveInjectCode = true
+                    String clsName = getInjectTargetClassName(member)
+
+                    if (member instanceof CtField) {
+                        println "target field clsName ${clsName}"
+                    } else if (member instanceof CtMethod) {
+                        println "target method clsName ${clsName}"
+                    }
+                    if (!targetMap.containsKey(clsName)) {
+                        targetMap[clsName] = true
+                    }
+
+                    if (file != null) {
+                        targetMap[file.absolutePath] = true
+                    } else if (entryName != null) {
+                        targetMap[entryName] = true
+                    }
+                }
+            }
+
+            if (!haveInjectCode) {
+                if (targetMap[ctClassName]) {
+                    println "${ctClassName} to be injected"
+                    targetMap[file.absolutePath] = true
+                }
+            }
+        }
+    }
+
+    void appendClassPathWithFile(File file) {
+        ClassPath path = appendClassPath(file.absolutePath)
+        pathList.add(path)
+    }
+
+    void injectPrepare(File file) {
+        if (!targetMap.containsKey(file.absolutePath)) {
+            return
+        }
+
+        InputStream inputStream = new FileInputStream(file)
+        CtClass ctClass = makeClass(inputStream)
+        map[file.absolutePath] = ctClass.name
+
+        if (inputStream != null) {
+            inputStream.close()
+        }
+
+        checkInsertCode(file.absolutePath, ctClass)
     }
 
     boolean isContainInsertCode(String name) {
         return insertMap.containsKey(name)
     }
 
+    void traverseInsertInfo(CtMember[] ctMembers, CtClass ctClass) {
+        if (ctMembers.length > 0) {
+            for (CtMember member : ctMembers) {
+                if (member.hasAnnotation(Insert.class)) {
+                    InsertInfo info = new InsertInfo()
+                    if (member instanceof CtField) {
+                        info.srcField = member
+                        println "field annotation : ${member}"
+                    } else if (member instanceof CtMethod) {
+                        info.srcMtd = member
+                        println "method annotation : ${member}"
+                    }
+
+                    info.ctClassName = ctClass.name
+                    list.add(info)
+                }
+            }
+        }
+    }
+
     void checkInsertCode(String name, CtClass ctClass) {
+        if (!targetMap.containsKey(name) && !targetMap.containsKey(ctClass.name)) {
+            ctClass.detach()
+            return
+        }
+
+        println "checkInsertCode name : ${ctClass.name}"
+        clsList.add(ctClass)
         if (name != null && name.length() > 0) {
             map[name] = ctClass.name
         }
 
-        clsList.add(ctClass)
         //遍历当前class文件中的字段, 找到有注入注解的字段, 添加到注入列表中
-        CtField[] ctFields = ctClass.getDeclaredFields()
-//        println "declared fields : ${ctClass.getDeclaredFields()}"
-        if (ctFields.length > 0) {
-            for (CtField field : ctFields) {
-                if (field.hasAnnotation(Insert.class)) {
-                    println "field annotation : ${field}"
-                    InsertInfo info = new InsertInfo()
-                    info.srcField = field
-                    info.ctClassName = ctClass.name
-                    list.add(info)
-                }
-            }
-        }
+        traverseInsertInfo(ctClass.getDeclaredFields(), ctClass)
 
         //遍历当前class文件中的方法, 找到有注入注解的方法, 添加到注入列表中
-        CtMethod[] ctMethods = ctClass.methods
-        if (ctMethods.size() > 0) {
-            for (CtMethod method : ctMethods) {
-                if (method.hasAnnotation(Insert.class)) {
-                    InsertInfo info = new InsertInfo()
-                    info.srcMtd = method
-                    info.ctClassName = ctClass.name
-                    list.add(info)
-                }
-            }
-        }
+        traverseInsertInfo(ctClass.methods, ctClass)
     }
 
     boolean injectItem(String clsName, String directoryName) {
@@ -132,12 +205,17 @@ class CustomClassPool extends ClassPool {
             }
         } else {
             Set<String> set = insertInfoMap.keySet()
+            List<String> list = new ArrayList<>()
             for (String key : set) {
+                list.add(key)
+            }
+            for (String key : list) {
                 println "injectInsertInfo key : $key"
                 if (injectItem(key, null)) {
                     insertInfoMap.remove(key)
                 }
             }
+            list.clear()
             println "collect map.size = ${insertInfoMap.size()}"
         }
     }
@@ -188,10 +266,7 @@ class CustomClassPool extends ClassPool {
 
     void injectMethod(CtMethod[] methods, CtMethod srcMethod, String srcClsName, String directoryName) {
         Insert annotation = srcMethod.getAnnotation(Insert.class)
-        String clsName = annotation.classPath()
-        if (clsName == null || clsName.length() == 0) {
-            clsName = getAnnotationClassValue(ctMember, Insert.class, "target")
-        }
+        String clsName = getInjectTargetClassName(srcMethod)
         CtClass targetCtCls = get(clsName)
         if (targetCtCls.isFrozen()) {
             targetCtCls.defrost()
@@ -250,10 +325,7 @@ class CustomClassPool extends ClassPool {
             CtMethod method = info.srcMtd
             Insert annotation = ctMember.getAnnotation(Insert.class)
 
-            String clsName = annotation.classPath()
-            if (clsName == null || clsName.length() == 0) {
-                clsName = getAnnotationClassValue(ctMember, Insert.class, "target")
-            }
+            String clsName = getInjectTargetClassName(ctMember)
 
             if (absolutePath != null && !absolutePath.isEmpty()) {
                 if (clsName != getCachedClassName(absolutePath)) {
@@ -355,20 +427,15 @@ class CustomClassPool extends ClassPool {
     }
 
     //收集注入信息, 将注入目标文件一致的信息合并到list
-    void collectInsertInfo() {
+    void mergeInsertInfoByTargetFile() {
         if (list.size() > 0) {
             for (InsertInfo info : list) {
                 CtMember ctMember = info.srcField
                 if (ctMember == null) {
                     ctMember = info.srcMtd
                 }
-                Insert annotation = ctMember.getAnnotation(Insert.class)
 
-                String clsName = annotation.classPath()
-                if (clsName == null || clsName.length() == 0) {
-                    clsName = getAnnotationClassValue(ctMember, Insert.class, "target")
-                }
-
+                String clsName = getInjectTargetClassName(ctMember)
                 if (insertInfoMap.containsKey(clsName)) {
                     List<InsertInfo> list = insertInfoMap[clsName]
                     list.add(info)
@@ -402,16 +469,16 @@ class CustomClassPool extends ClassPool {
         pathList.clear()
 
         for (CtClass cls : clsList) {
-            cls.detach()
+            if (cls != null) {
+                try {
+                    cls.detach()
+                } catch (Throwable r) {
+                    r.printStackTrace()
+                }
+            }
         }
         clsList.clear()
         classes.clear()
         println "ClassPool release"
-    }
-
-    static String getAnnotationClassValue(CtMember ctMember, Class annotationClass, String member) {
-        AnnotationsAttribute attribute = (AnnotationsAttribute) ctMember.getAttribute(AnnotationsAttribute.visibleTag)
-        Annotation annotation = attribute.getAnnotation(annotationClass.getName())
-        return ((ClassMemberValue) annotation.getMemberValue(member)).getValue()
     }
 }
