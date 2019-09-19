@@ -93,49 +93,32 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
 
         //遍历inputs, inputs中包括directoryInputs和jarInputs，directoryInputs为文件夹中的class文件，而jarInputs为jar包中的class文件
         Collection<TransformInput> inputs = transformInvocation.inputs
-//        println "transformInvocation inputs ${inputs}"
-        inputs?.forEach {
-            it.directoryInputs?.forEach {
-                handleDirectoryInput(it, outputProvider, false)
-            }
 
-            it.jarInputs?.forEach {
-                handleJarInputs(it, outputProvider)
-            }
-        }
+        collectInjectClassesInfo(inputs)
 
-        clsPool.collectInsertInfo()
+        injectPrepare(inputs, outputProvider)
 
-        //目录下class文件遍历修改
-        inputs?.forEach {
-            it.directoryInputs?.forEach {
-                handleDirectoryInput(it, outputProvider, true)
-            }
-        }
-        clsPool.injectMethods(null, null)
-        injectInsertClass()
+        injectClassFile(inputs, outputProvider)
+
         clsPool.release()
         def cost = (System.currentTimeMillis() - startTime) / 1000
         println "transform cost : $cost s"
     }
 
-    static boolean isFilterClassFile(String name) {
-        return !name.endsWith(".class") || name.startsWith("R\$") || (name == "R.class") || (name == "BuildConfig.class")
-    }
-
-    void handleDirectoryInput(DirectoryInput directoryInput, TransformOutputProvider outputProvider, boolean modify) {
+    void handleDirectoryInput(DirectoryInput directoryInput, TransformOutputProvider outputProvider, boolean inject) {
         boolean find = false
         if (directoryInput.file.isDirectory()) {
             directoryInput.file.eachFileRecurse {
                 def name = it.name
-                if (!isFilterClassFile(name)) {
-                    if (!modify) {
-                        clsPool.appendClassPathAndCached(it, false)
+                if (!Util.isFilterClassFile(name)) {
+                    if (!inject) {
+                        clsPool.injectPrepare(it)
                     } else {
-                        clsPool.injectMethods(it.absolutePath, directoryInput.file.path)
+//                        clsPool.injectMethods(it.absolutePath, directoryInput.file.path)
+                        clsPool.injectInsertInfo(it.absolutePath, directoryInput.file.path)
                     }
                 }
-                if (modify && "TestAsm.class" == name) {
+                if (inject && "TestAsm.class" == name) {
                     println "handleDirectoryInput found name : $name"
                     ClassReader classReader = new ClassReader(it.bytes)
                     ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
@@ -150,7 +133,7 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
             }
         }
 
-        if (modify) {
+        if (inject) {
             //处理完输入文件之后，要把输出给下一个任务
             def dest = outputProvider.getContentLocation(directoryInput.name,
                     directoryInput.contentTypes, directoryInput.scopes,
@@ -173,7 +156,6 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
                 jarName = jarName.substring(0, jarName.length() - ".jar".length())
             }
             JarFile jarFile = new JarFile(jarInput.file)
-            clsPool.appendClassPathAndCached(jarInput.file, true)
             Enumeration enumeration = jarFile.entries()
             File tmpFile = new File(jarInput.file.getParent() + File.separator + "classes_temp.jar")
             //避免上次的缓存被重复插入
@@ -188,7 +170,7 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
                 ZipEntry zipEntry = new ZipEntry(entryName)
                 InputStream inputStream = jarFile.getInputStream(jarEntry)
                 CtClass ctClass = null
-                if (!isFilterClassFile(entryName)) {
+                if (!Util.isFilterClassFile(entryName)) {
                     clsPool.checkInsertCode(entryName, ctClass = clsPool.makeClass(inputStream))
                 }
                 //插桩class
@@ -230,15 +212,7 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
         }
     }
 
-    static ZipEntry createZipEntry(ZipEntry zipEntry) {
-        ZipEntry zipEntry2 = new ZipEntry(zipEntry.getName())
-        zipEntry2.setComment(zipEntry.getComment())
-        zipEntry2.setExtra(zipEntry.getExtra())
-        return zipEntry2
-    }
-
-    void injectInsertClass() {
-        println "map : ${clsPool.insertMap}"
+    void updateModifiedClassInJar() {
         jarList.each {
             File src = new File(it)
             File tempFile = new File(it + "_tmp")
@@ -250,17 +224,16 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
                     if (nextEntry == null) {
                         break
                     }
-                    outputStream.putNextEntry(createZipEntry(nextEntry))
+                    outputStream.putNextEntry(Util.createZipEntry(nextEntry))
                     String className = clsPool.getCachedClassName(nextEntry.name)
-//                    println "${nextEntry.name}"
                     if (clsPool.isContainInsertCode(className)) {
-                        println "injectInsertClass nextEntry ${className}, jar : ${src.name}"
+                        println "updateModifiedClassInJar ${nextEntry.name} : ${className}, jar : ${src.name}"
                         CtClass ctClass = clsPool.get(className)
                         byte[] bytes = ctClass.toBytecode()
                         IOUtils.write(bytes, outputStream)
-                        saveTestClassFile(bytes, className)
+                        Util.saveTestClassFile(bytes, className)
                     } else {
-                        copy(inputStream, outputStream, 16384)
+                        Util.copy(inputStream, outputStream, 16384)
                     }
                 }
 
@@ -279,24 +252,83 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
         }
     }
 
-    static void copy(InputStream input, OutputStream output, int bufferSize) throws IOException {
-        byte[] buffer = new byte[bufferSize]
+    //遍历文件搜集包含注入代码的类及注入目标类
+    void collectInjectClassesInfo(Collection<TransformInput> inputs) {
+        inputs?.forEach {
+            it.directoryInputs?.forEach {
+                collectDirectoryInput(it)
+            }
 
-        int n
-        while(0 <= (n = input.read(buffer))) {
-            output.write(buffer, 0, n)
+            it.jarInputs?.forEach {
+                collectJarInput(it)
+            }
+        }
+
+        println "targetMap : ${clsPool.targetMap}"
+    }
+
+    void collectDirectoryInput(DirectoryInput directoryInput) {
+        if (directoryInput.file.isDirectory()) {
+            directoryInput.file.eachFileRecurse {
+                def name = it.name
+                if (!Util.isFilterClassFile(name)) {
+                    clsPool.appendClassPathWithFile(it)
+                    clsPool.collectUsedClass(it, null, null)
+                }
+            }
         }
     }
 
-    static void saveTestClassFile(byte[] bytes, String className) {
-        if (className.endsWith("TestB")) {
-            File tmpClsFile = new File("E:\\" + className + ".class")
-            if (!tmpClsFile.exists()) {
-                tmpClsFile.createNewFile()
+    void collectJarInput(JarInput jarInput) {
+        if (jarInput.file.absolutePath.endsWith(".jar")) {
+            JarFile jarFile = new JarFile(jarInput.file)
+            clsPool.appendClassPathWithFile(jarInput.file)
+            Enumeration enumeration = jarFile.entries()
+            //用于保存
+            while (enumeration.hasMoreElements()) {
+                JarEntry jarEntry = (JarEntry) enumeration.nextElement()
+                String entryName = jarEntry.getName()
+                InputStream inputStream = jarFile.getInputStream(jarEntry)
+                if (!Util.isFilterClassFile(entryName)) {
+                    clsPool.collectUsedClass(null, entryName, clsPool.makeClass(inputStream))
+                }
+                inputStream.close()
             }
-            OutputStream os = new FileOutputStream(tmpClsFile)
-            IOUtils.write(bytes, os)
-            os.close()
+            //结束
+            jarFile.close()
+        } else {
+            println "jarInput path : ${jarInput.file.getAbsolutePath()}"
         }
+    }
+
+    void injectPrepare(Collection<TransformInput> inputs, TransformOutputProvider outputProvider) {
+        inputs?.forEach {
+            it.directoryInputs?.forEach {
+                handleDirectoryInput(it, outputProvider, false)
+            }
+
+            it.jarInputs?.forEach {
+                handleJarInputs(it, outputProvider)
+            }
+        }
+    }
+
+    void injectClassFile(Collection<TransformInput> inputs, TransformOutputProvider outputProvider) {
+        //按注入目标文件合并注入列表信息
+        clsPool.mergeInsertInfoByTargetFile()
+
+        //目录下class文件遍历修改
+        inputs?.forEach {
+            it.directoryInputs?.forEach {
+                handleDirectoryInput(it, outputProvider, true)
+            }
+        }
+
+        //修改class文件
+        //clsPool.injectMethods(null, null)
+        clsPool.injectInsertInfo(null, null)
+
+        //复制相关修改的class文件到jar中
+        updateModifiedClassInJar()
     }
 }
