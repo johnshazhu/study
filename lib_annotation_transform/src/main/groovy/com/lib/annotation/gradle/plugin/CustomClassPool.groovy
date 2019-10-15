@@ -295,12 +295,12 @@ class CustomClassPool extends ClassPool {
                     if (code.contains("\n")) {
                         code = "{" + code + "}"
                     }
-                    m.setBody(code)
+                    //m.setBody(code)
                     //方式二 : 复制method的方法替换
-                    /*if (clsName.endsWith("\$Companion")) {
+                    if (clsName.endsWith("\$Companion")) {
                         srcMethod.addLocalVariable("this", targetCtCls)
                     }
-                    m.setBody(srcMethod, null)*/
+                    m.setBody(srcMethod, null)
                 } else if (annotation.before()) {
                     m.insertBefore(code)
                 } else {
