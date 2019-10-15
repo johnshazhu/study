@@ -31,7 +31,7 @@ class TestPagerAdapter(context: Context, views: List<View>, data: List<Int>): Pa
     }
 
     override fun getCount(): Int {
-        var size: Int = list.size
+        var size: Int = data.size
         return if (size < maxCount) size else maxCount
     }
 }

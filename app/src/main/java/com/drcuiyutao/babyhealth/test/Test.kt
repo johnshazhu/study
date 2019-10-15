@@ -8,9 +8,8 @@ import com.drcuiyutao.lib.api.base.APIBaseResponse
 import com.drcuiyutao.lib.db.entity.User
 import com.drcuiyutao.lib.db.util.DatabaseUtil
 import com.drcuiyutao.lib.gson.TypeUtil
+import com.drcuiyutao.lib.image.ImageUtil
 import com.google.gson.Gson
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -23,16 +22,7 @@ import java.util.*
 
 object Test {
     fun test(context: Context, url: String, view: ImageView) {
-        Picasso.Builder(context).listener { picasso, uri, exception -> exception.printStackTrace() }.build().load(url)
-            .into(view, object : Callback {
-                override fun onSuccess() {
-
-                }
-
-                override fun onError() {
-
-                }
-            })
+        ImageUtil.displayImage(url, view)
     }
 
     fun type(raw: Class<*>, vararg args: Type): ParameterizedType {

@@ -1,26 +1,36 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
-    ext.android_compile_version = 29
-    ext.android_buildtools_version = '29.0.0'
-
-    ext.maven_url_release = 'http://nexus.drcuiyutao.com/nexus/content/repositories/releases/'
-    ext.maven_url_snapshot = 'http://nexus.drcuiyutao.com/nexus/content/repositories/snapshots/'
-    ext.maven_user = 'admin'
-    ext.maven_pw = 'admin123'
-    ext.annotation_plugin_version = '1.0.0'
-    ext.lib_annotation_version = '1.0.0'
-    ext.android_tools_build_gradle_version = '3.4.2'
-    ext.androidx_core_version = '1.1.0'
+buildscript { 
     ext.kotlin_version = '1.3.50'
-    ext.okhttp_version = '4.0.1'
-    ext.retrofit_version = '2.6.0'
-    ext.gson_version = '2.8.5'
-    ext.room_version = '2.1.0'
-    ext.rxandroid_version = '2.1.0'
-    ext.rxjava2_version = '1.1.1'
-    ext.retrofit2_rxjava2_adapter_version = '2.6.1'
-    ext.javassist_version= '3.25.0-GA'
+
+    ext {
+        android_compile_version = 29
+        android_buildtools_version = '29.0.0'
+        min_sdk_version = 19
+        target_sdk_version = 29
+        version_code = 1
+        version_name = '1.0.0'
+        multidex_version = '2.0.1'
+
+        annotation_plugin_version = '1.0.0'
+        lib_annotation_version = '1.0.0'
+
+        android_tools_build_gradle_version = '3.5.1'
+        androidx_core_version = '1.1.0'
+        androidx_constraintlayout_version = '1.1.3'
+        kotlin_version = '1.3.50'
+        okhttp_version = '4.0.1'
+        retrofit_version = '2.6.0'
+        gson_version = '2.8.5'
+        room_version = '2.2.0'
+        rxandroid_version = '2.1.0'
+        rxjava2_version = '1.1.1'
+        retrofit2_rxjava2_adapter_version = '2.6.1'
+        javassist_version= '3.25.0-GA'
+        glide_version = '4.10.0'
+        picasso_version = '2.5.2'
+    }
+
     repositories {
         maven {
             url uri('./repo')
@@ -29,7 +39,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "com.android.tools.build:gradle:$android_tools_build_gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

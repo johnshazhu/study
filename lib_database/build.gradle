@@ -10,13 +10,12 @@ android {
     compileSdkVersion android_compile_version
     buildToolsVersion android_buildtools_version
 
-
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode version_code
+        versionName version_name
+        consumerProguardFiles 'consumer-rules.pro'
 //        javaCompileOptions {
 //            annotationProcessorOptions {
 //                arguments = [
@@ -48,10 +47,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "androidx.appcompat:appcompat:$androidx_core_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
     //https://stackoverflow.com/questions/53152796/androidx-room-unresolved-supertypes-roomdatabase
     api "androidx.room:room-runtime:$room_version"

@@ -64,7 +64,7 @@ class MainActivity : BaseActivity(), ResponseListener<APIBaseResponse<StartUpDat
         if (packageInfo != null) {
             var targetSdkVersion = packageInfo.applicationInfo.targetSdkVersion
             Log.i("xdebug", "targetSdkVersion : $targetSdkVersion")
-            if (targetSdkVersion >= android.os.Build.VERSION_CODES.Q) {
+            if (targetSdkVersion >= android.os.Build.VERSION_CODES.Q && android.os.Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.Q) {
                 performFileSearch()
             } else {
                 var permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)

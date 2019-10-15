@@ -12,7 +12,7 @@ import java.util.zip.ZipEntry
 
 class Util {
     static void saveTestClassFile(byte[] bytes, String className) {
-        if (className.endsWith("TestB")) {
+        if (className.endsWith("ImageUtil")) {
             try {
                 File tmpClsFile = new File("E:\\" + className + ".class")
                 if (!tmpClsFile.exists()) {

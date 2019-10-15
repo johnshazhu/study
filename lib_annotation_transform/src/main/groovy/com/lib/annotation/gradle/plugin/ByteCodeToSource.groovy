@@ -11,7 +11,7 @@ import javassist.bytecode.MethodInfo
 import javassist.bytecode.Mnemonic
 
 class ByteCodeToSource {
-    static String getSourceTextByByteCode(CtClass ctClass, CtMethod method) {
+    static String getSourceTextByByteCode(CtClass ctClass, CtMethod method, boolean replace) {
         println "getSourceTextByByteCode"
         MethodInfo info = method.methodInfo
         CodeAttribute ca = info.codeAttribute
@@ -22,7 +22,6 @@ class ByteCodeToSource {
                 int tag = cp.getTag(i)
                 switch (tag) {
                     case ConstPool.CONST_Methodref://10
-                        MethodInfo
                         println "methodref[${i}] : ${cp.getMethodrefName(i)}, ${cp.getMethodrefClassName(i)}"
                         break
                     case ConstPool.CONST_Fieldref://9
@@ -68,15 +67,20 @@ class ByteCodeToSource {
                                 break
 
                             case "LocalVariableTable":
-//                                println "attribute LocalVariableTable : ${ai.toString()}"
+                                println "attribute LocalVariableTable : ${ai.toString()}"
                                 LocalVariableAttribute lva = (LocalVariableAttribute) ai
                                 if (lva.tableLength() > 0) {
                                     for (int j = 0; j < lva.tableLength(); ++j) {
                                         int nameIndex = lva.nameIndex(j)
-//                                        println "attribute LocalVariableTable nameIndex : $nameIndex, name : ${lva.name}, index : ${lva.index(j)}"
-                                        if (lva.index(j) > 0) {
-                                            localVariableList.add(cp.getUtf8Info(nameIndex))
+                                        //println "index ${lva.index(j)}, desIndex ${lva.descriptorIndex(j)}"
+                                        //println "attribute LocalVariableTable nameIndex : $nameIndex, name : ${lva.name}, index : ${lva.index(j)}"
+                                        LocalVariableInfo lvi = new LocalVariableInfo()
+                                        lvi.name = cp.getUtf8Info(nameIndex)
+                                        lvi.type = cp.getUtf8Info(lva.descriptorIndex(j))
+                                        if (lvi.type.startsWith("L")) {
+                                            lvi.type = lvi.type.replaceAll("/", ".").substring(1, lvi.type.length() - 1)
                                         }
+                                        localVariableList.add(lvi)
                                     }
                                 }
                                 break
@@ -91,43 +95,131 @@ class ByteCodeToSource {
 
         StringBuilder sourceTextBuilder = new StringBuilder()
         String source = ""
+        List<Object> argList = new LinkedList<>()
         int byteCodeIndex = 0
         boolean useLocalVariable = false
         boolean isInstance = false
-        LinkedList<Object> argList = new LinkedList<>()
+        boolean isBeforeNew = false
+        boolean isMethodExecuted = false
+        boolean isNewExecute = false
+        Map<String, String> map = new TreeMap<>()
         CodeIterator ci = ca.iterator()
         while (ci.hasNext()) {
             int index = ci.next()
             int op = ci.byteAt(index)
             println "index = ${index}, op = ${op}, str : ${Mnemonic.OPCODE[op]}"
-            int cpIndex = 0
+            int cpIndex
             switch (Mnemonic.OPCODE[op]) {
                 case "ldc":
                     cpIndex = ca.code[++byteCodeIndex]
-//                    println "cpIndex : $cpIndex"
+                    println "cpIndex : $cpIndex"
                     if (cp.getTag(cpIndex) == ConstPool.CONST_String) {
-                        argList.add(cp.getStringInfo(cpIndex))
+                        argList.add("\"" + cp.getStringInfo(cpIndex) + "\"")
                     }
+                case "pop":
+                case "return":
+                    if (isMethodExecuted) {
+                        isMethodExecuted = false
+                        sourceTextBuilder.append(";\n")
+                    }
+                    break
+
+                case "new":
+                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    println "cpIndex : ${cpIndex}"
+                    isBeforeNew = useLocalVariable
+                    if (cp.getTag(cpIndex) == ConstPool.CONST_Class) {
+                        source += "new " + cp.getClassInfo(cpIndex) + "("
+                    }
+                    isNewExecute = true
+                    break
+
+                case "invokespecial":
+                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    println "cpIndex : $cpIndex"
+                    int size = argList.size()
+                    if (size > 0 && !isBeforeNew) {
+                        for (int i = 0; i < size; ++i) {
+                            Object arg = argList.remove(i)
+                            if (arg instanceof Integer) {
+                                if (localVariableList.get(arg) instanceof LocalVariableInfo) {
+                                    source += replace ? ("\$" + arg) : ((LocalVariableInfo) localVariableList.get(arg)).name
+                                } else {
+                                    source += localVariableList.get(arg)
+                                }
+                            }
+                            if (i != size - 1) {
+                                source += ", "
+                            }
+                        }
+                    }
+                    source += ")"
+                    if (!isBeforeNew) {
+                        sourceTextBuilder.append(source)
+                        println "source : ${sourceTextBuilder.toString()}"
+                        source = ""
+                    } else {
+                        argList.add(source)
+                        source = ""
+                    }
+                    isNewExecute = false
+                    isBeforeNew = false
+                    isMethodExecuted = true
+                    break
+
+                case "checkcast":
+                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    println "cpIndex : $cpIndex"
                     break
 
                 case "invokevirtual":
                     isInstance = true
                 case "invokestatic":
                     cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
-//                    println "cpIndex : $cpIndex"
+                    println "cpIndex : $cpIndex, useLocalVariable : $useLocalVariable, isInstance : $isInstance"
                     if (cp.getTag(cpIndex) == ConstPool.CONST_Methodref) {
+                        String methodClassName = cp.getMethodrefClassName(cpIndex)
+                        //println "method cls name : $methodClassName"
+                        if (map.containsKey(methodClassName)) {
+                            //static field as object to call method
+                            source += map.get(methodClassName)
+                            map.remove(methodClassName)
+                            argList.remove(source)
+                        } else if (!map.isEmpty()) {
+                            //static field as method params
+                            map.clear()
+                        }
+
                         if (!isInstance) {
                             source += cp.getMethodrefClassName(cpIndex)
                         }
+
+                        if (isInstance && argList.size() > 0) {
+                            Object arg = argList.get(argList.size() - 1)
+                            if (arg instanceof Integer) {
+                                if (localVariableList.get(arg) instanceof LocalVariableInfo) {
+                                    LocalVariableInfo lvi = ((LocalVariableInfo) localVariableList.get(arg))
+                                    if (lvi.type == methodClassName) {
+                                        source += replace ? ("\$" + arg) : lvi.name
+                                        argList.remove(argList.size() - 1)
+                                    }
+                                }
+                            }
+                        }
+
                         source += "." + cp.getMethodrefName(cpIndex) + "("
 
-                        LinkedList<Object> list = useLocalVariable ? localVariableList : argList
+                        LinkedList<Object> list = argList
                         int size = list.size()
                         if (size > 0) {
                             for (int i = 0; i < size; ++i) {
                                 Object arg = list.remove(0)
-                                if (!isInstance && arg instanceof String) {
-                                    source += "\"" + arg +  "\""
+                                if (arg instanceof Integer) {
+                                    if (localVariableList.get(arg) instanceof LocalVariableInfo) {
+                                        source += replace ? ("\$" + arg) : ((LocalVariableInfo) localVariableList.get(arg)).name
+                                    } else {
+                                        source += localVariableList.get(arg)
+                                    }
                                 } else {
                                     source += arg
                                 }
@@ -135,38 +227,58 @@ class ByteCodeToSource {
                                 if (i != size - 1) {
                                     source += ", "
                                 } else {
-                                    source += ");"
+                                    source += ")"
                                 }
                             }
+                        } else {
+                            source += ")"
                         }
                     }
-                    println "source : ${source}"
+                    if (!isNewExecute) {
+                        println "source : ${source}"
+                    }
                     sourceTextBuilder.append(source)
                     source = ""
-                    sourceTextBuilder.append("\n")
                     isInstance = false
                     useLocalVariable = false
+                    isMethodExecuted = true
                     break
 
                 case "getstatic":
                     cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    //println "cpIndex : $cpIndex"
+                    String fieldType
                     if (cp.getTag(cpIndex) == ConstPool.CONST_Fieldref) {
                         source += cp.getFieldrefClassName(cpIndex)
-//                        println "class : ${cp.getFieldrefClassName(cpIndex)}, name_type : ${cp.getFieldrefNameAndType(cpIndex)}"
+                        fieldType = cp.getFieldrefType(cpIndex)
+                        if (fieldType.startsWith("L")) {
+                            //L ClassName ;
+                            fieldType = fieldType.replaceAll("/", ".").substring(1, fieldType.length() - 1)
+                        }
+                        //println "class : ${cp.getFieldrefClassName(cpIndex)}, name_type : ${cp.getFieldrefNameAndType(cpIndex)}"
                         cpIndex = cp.getFieldrefNameAndType(cpIndex)
                         if (cp.getTag(cpIndex) == ConstPool.CONST_NameAndType) {
-//                            println "name_type index : ${cp.getNameAndTypeName(cpIndex)}"
                             cpIndex = cp.getNameAndTypeName(cpIndex)
                             if (cp.getTag(cpIndex) == ConstPool.CONST_Utf8) {
-//                                println "name : ${cp.getUtf8Info(cpIndex)}"
+                                println "field name : ${cp.getUtf8Info(cpIndex)}, type : $fieldType"
                                 source += "." + cp.getUtf8Info(cpIndex)
                             }
                         }
+                        map.put(fieldType, source)
+                        argList.add(source)
+                        source = ""
                     }
                     break
 
+                case "aload_0":
                 case "aload_1":
+                case "aload_2":
+                case "aload_3":
+                    argList.add(Integer.parseInt(Mnemonic.OPCODE[op].replace("aload_", "")))
                     useLocalVariable = true
+                    break
+
+                case "dup":
                     break
 
                 default:
@@ -175,7 +287,7 @@ class ByteCodeToSource {
             ++byteCodeIndex
         }
 
-        println "sourceText : ${sourceTextBuilder}"
+        println "sourceText : \n${sourceTextBuilder}"
         return sourceTextBuilder.toString()
     }
 }

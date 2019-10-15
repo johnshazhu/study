@@ -1,1 +1,1 @@
-include ':app', ':lib_core', ':lib_okhttp', ':lib_database', ':lib_annotation', ':lib_annotation_transform'
+include ':app', ':lib_core', ':lib_okhttp', ':lib_database', ':lib_annotation', ':lib_annotation_transform', ':lib_glide', ':lib_picasso'

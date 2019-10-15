@@ -11,13 +11,11 @@ android {
     buildToolsVersion android_buildtools_version
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode version_code
+        versionName version_name
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -31,15 +29,24 @@ android {
         targetCompatibility = '1.8'
     }
 
+    flavorDimensions "brand"
+    productFlavors {
+        picasso {
+
+        }
+
+        glide {
+
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation "androidx.multidex:multidex:$multidex_version"
+
     implementation "androidx.appcompat:appcompat:$androidx_core_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.core:core-ktx:$androidx_core_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "com.google.code.gson:gson:$gson_version"
@@ -47,4 +54,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_rxjava2_adapter_version"
     implementation "org.javassist:javassist:$javassist_version"
+
+    glideImplementation project(':lib_glide')
+    picassoImplementation project(':lib_picasso')
 }

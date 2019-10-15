@@ -282,17 +282,25 @@ class CustomClassPool extends ClassPool {
                 if (Modifier.isPublic(srcMethod.getModifiers()) && Modifier.isStatic(srcMethod.getModifiers())) {
                     code = mtdCls.name + "." + srcMethod.name + "(\$\$);"
                 } else {
-                    code = ByteCodeToSource.getSourceTextByByteCode(mtdCls, srcMethod)
+                    try {
+                        code = ByteCodeToSource.getSourceTextByByteCode(mtdCls, srcMethod, annotation.replace())
+                    } catch (Throwable r) {
+                        r.printStackTrace()
+                        println "getSourceTextByByteCode exception"
+                    }
                 }
-                println "method : ${srcMethod}, code : $code, modifyer : ${srcMethod.getModifiers()}"
+                println "method : ${srcMethod}, code : $code, modifyer : ${srcMethod.getModifiers()}, $clsName, ${annotation.replace()}"
                 if (annotation.replace()) {
                     //方式一 : source text方式替换
-//                        m.setBody(code)
+                    if (code.contains("\n")) {
+                        code = "{" + code + "}"
+                    }
+                    m.setBody(code)
                     //方式二 : 复制method的方法替换
-                    if (clsName.endsWith("\$Companion")) {
+                    /*if (clsName.endsWith("\$Companion")) {
                         srcMethod.addLocalVariable("this", targetCtCls)
                     }
-                    m.setBody(srcMethod, null)
+                    m.setBody(srcMethod, null)*/
                 } else if (annotation.before()) {
                     m.insertBefore(code)
                 } else {
@@ -396,7 +404,7 @@ class CustomClassPool extends ClassPool {
                         if (Modifier.isPublic(method.getModifiers()) && Modifier.isStatic(method.getModifiers())) {
                             code = mtdCls.name + "." + method.name + "(\$\$);"
                         } else {
-                            code = ByteCodeToSource.getSourceTextByByteCode(mtdCls, method)
+                            code = ByteCodeToSource.getSourceTextByByteCode(mtdCls, method, annotation.replace())
                         }
                         println "method : ${method}, code : $code, modifyer : ${method.getModifiers()}"
                         if (annotation.replace()) {
