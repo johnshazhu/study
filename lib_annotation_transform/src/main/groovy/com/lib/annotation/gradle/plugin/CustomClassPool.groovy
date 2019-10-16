@@ -292,15 +292,15 @@ class CustomClassPool extends ClassPool {
                 println "method : ${srcMethod}, code : $code, modifyer : ${srcMethod.getModifiers()}, $clsName, ${annotation.replace()}"
                 if (annotation.replace()) {
                     //方式一 : source text方式替换
-                    if (code.contains("\n")) {
+                    if (code != null && code.contains("\n")) {
                         code = "{" + code + "}"
                     }
-                    //m.setBody(code)
+                    m.setBody(code)
                     //方式二 : 复制method的方法替换
-                    if (clsName.endsWith("\$Companion")) {
+                    /*if (clsName.endsWith("\$Companion")) {
                         srcMethod.addLocalVariable("this", targetCtCls)
                     }
-                    m.setBody(srcMethod, null)
+                    m.setBody(srcMethod, null)*/
                 } else if (annotation.before()) {
                     m.insertBefore(code)
                 } else {

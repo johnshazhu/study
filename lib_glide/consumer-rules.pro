@@ -1,3 +1,7 @@
--keep public class  extends com.bumptech.glide.module.AppGlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule{*;}
 -keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
 -keep class com.third.image.glide.GlideUtil{*;}
+-keep class com.bumptech.glide.Glide{*;}
+-keep class com.bumptech.glide.RequestManager{*;}
+-keep class com.bumptech.glide.request.BaseRequestOptions{*;}
+-keep class com.bumptech.glide.RequestBuilder{*;}
