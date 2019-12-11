@@ -80,4 +80,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.lib.annotation:lib_annotation:$lib_annotation_version"
     implementation "org.javassist:javassist:$javassist_version"
+
+    implementation project(':flutter')
 }

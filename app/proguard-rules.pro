@@ -21,3 +21,12 @@
 #-renamesourcefileattribute SourceFile
 -keep class com.drcuiyutao.babyhealth.api.**{*;}
 -keep class com.drcuiyutao.babyhealth.model.**{*;}
+
+#flutter release version crash.
+#https://www.jianshu.com/p/338422e3ecc1
+-keep class io.flutter.app.** { *; }
+-keep class io.flutter.plugin.**  { *; }
+-keep class io.flutter.util.**  { *; }
+-keep class io.flutter.view.**  { *; }
+-keep class io.flutter.**  { *; }
+-keep class io.flutter.plugins.**  { *; }

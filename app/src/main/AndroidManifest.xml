@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TestPagerActivity"/>
+        <activity android:name=".TestPagerActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".FlutterTestActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

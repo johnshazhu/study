@@ -40,7 +40,7 @@ class MainActivity : BaseActivity(), ResponseListener<APIBaseResponse<StartUpDat
 
         val context = this
         binding.test = data
-        binding.image.setOnClickListener { startActivity(Intent(context, TestPagerActivity::class.java)) }
+        binding.image.setOnClickListener { startActivity(Intent(context, /*TestPagerActivity*/FlutterTestActivity::class.java)) }
 
 //        Test.testParseData(this)
 //        Test.testRoom(this)
