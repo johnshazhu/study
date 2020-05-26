@@ -17,10 +17,10 @@ public class LifecycleOnCreateMethodVisitor extends MethodVisitor implements Opc
         System.out.println("visitCode name : " + name);
         if (name.equals("<clinit>")) {
             mv.visitLdcInsn("Test Modify Tag");
-            mv.visitFieldInsn(PUTSTATIC, "com/drcuiyutao/babyhealth/test/TestAsm", "TAG", "Ljava/lang/String;");
+            mv.visitFieldInsn(PUTSTATIC, "com/com.study/com.study.doc/test/TestAsm", "TAG", "Ljava/lang/String;");
             mv.visitInsn(RETURN);
         } else {
-            mv.visitMethodInsn(INVOKESTATIC, "com/drcuiyutao/babyhealth/test/TestAsm", "showLog", "()V", false);
+            mv.visitMethodInsn(INVOKESTATIC, "com/com.study/com.study.doc/test/TestAsm", "showLog", "()V", false);
         }
     }
 

@@ -1,0 +1,5 @@
+-keep class com.study.doc.test.MainActivity.class
+-keep class com.third.image.picasso.PicassoUtil.class
+-keep class com.study.lib.image.ImageUtil.class
+-keep class com.third.image.picasso.PicassoUtil$displayImage$1.class
+-keep class com.third.image.picasso.PicassoUtil$displayImage$2.class

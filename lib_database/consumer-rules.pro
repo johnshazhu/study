@@ -1,1 +1,1 @@
--keep class com.drcuiyutao.lib.db.**{*;}
+-keep class com.study.lib.db.**{*;}

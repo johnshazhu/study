@@ -1,11 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'package:flutter_module/api.dart';
 import 'package:flutter_module/appbar.dart';
 import 'package:flutter_module/test.dart';
 
-void main() => runApp(MyApp(/*window.defaultRouteName*/'test'));
+void main() => runApp(MyApp(window.defaultRouteName));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -14,12 +13,13 @@ class MyApp extends StatelessWidget {
 
   MyApp(String route) {
     this.route = route;
+    print("route : $route");
   }
 
   @override
   Widget build(BuildContext context) {
     switch (route) {
-      case "index":
+      case 'index':
         final wordPair = new WordPair.random();
         return MaterialApp(
           title: 'Flutter Demo',
@@ -39,9 +39,6 @@ class MyApp extends StatelessWidget {
         );
 
       case 'test':
-        String deviceJson = '';
-        Future<String> device = DefaultAssetBundle.of(context).loadString("assets/device.json");
-        device.then((deviceJson) => request(context, null, deviceJson));
         return MaterialApp(home: DoctorVCourse('【崔玉涛医生给你的七日育儿锦囊】'));
 
       default:

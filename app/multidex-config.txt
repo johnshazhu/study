@@ -1,5 +1,5 @@
-com/drcuiyutao/babyhealth/test/MainActivity.class
+com/study/doc/test/MainActivity.class
 com/third/image/picasso/PicassoUtil.class
-com/drcuiyutao/lib/image/ImageUtil.class
+com/study/lib/image/ImageUtil.class
 com/third/image/picasso/PicassoUtil$displayImage$1.class
 com/third/image/picasso/PicassoUtil$displayImage$2.class

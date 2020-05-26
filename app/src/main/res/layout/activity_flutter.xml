@@ -3,4 +3,21 @@
     android:id="@+id/flutter_view"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/random_words"
+            android:onClick="onRandomWordsClick"
+            android:text="Random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/api_test"
+            android:onClick="onApiTestClick"
+            android:text="ApiTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </FrameLayout>

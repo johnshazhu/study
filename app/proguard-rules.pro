@@ -19,8 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.drcuiyutao.babyhealth.api.**{*;}
--keep class com.drcuiyutao.babyhealth.model.**{*;}
+-keep class com.study.doc.api.**{*;}
+-keep class com.study.doc.model.**{*;}
 
 #flutter release version crash.
 #https://www.jianshu.com/p/338422e3ecc1

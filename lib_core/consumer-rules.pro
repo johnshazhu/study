@@ -44,7 +44,7 @@
 -keep class com.squareup.okhttp.** { *; }
 -keep interface com.squareup.okhttp.** { *; }
 
--keep class com.drcuiyutao.lib.api.**{*;}
--keep class com.drcuiyutao.lib.model.**{*;}
--keep class com.drcuiyutao.lib.sys.**{*;}
--keep class com.drcuiyutao.lib.image.**{*;}
+-keep class com.study.lib.api.**{*;}
+-keep class com.study.lib.model.**{*;}
+-keep class com.study.lib.sys.**{*;}
+-keep class com.study.lib.image.**{*;}

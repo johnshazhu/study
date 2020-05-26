@@ -5,11 +5,12 @@ import android.widget.ImageView
 import com.lib.annotation.Insert
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 object PicassoUtil {
     val TAG = PicassoUtil::class.java.simpleName
 
-    @Insert(classPath = "com.drcuiyutao.lib.image.ImageUtil", name = "displayImage", replace = true)
+    @Insert(classPath = "com.com.study.lib.image.ImageUtil", name = "displayImage", replace = true)
     fun displayImage(url: String, view: ImageView) {
         Log.i("PicassoUtil", "displayImage use Picasso!!!")
         Picasso.Builder(view.context)
@@ -21,7 +22,7 @@ object PicassoUtil {
                     Log.i("PicassoUtil", "onSuccess")
                 }
 
-                override fun onError() {
+                override fun onError(e : Exception) {
                     Log.i("PicassoUtil", "onError")
                 }
             })

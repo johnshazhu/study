@@ -8,6 +8,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.lib.annotation.gradle.plugin'
 
+import com.lib.annotation.gradle.plugin.MainDexGenerator
+
 android {
     compileSdkVersion android_compile_version
     buildToolsVersion android_buildtools_version
@@ -62,14 +64,45 @@ android {
     }
 }
 
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.whenTaskAdded { task ->
+    println "task : $task.name"
+    if (task.name.contains('transformDexArchiveWithDexMergerFor')) {
+        task.doFirst(new MainDexGenerator([
+                'io/reactivex/annotations',
+                'com/fasterxml',
+                'rx',
+                'org/jivesoftware',
+                'org/jetbrains/',
+                'org/intellij',
+                'android/support/v4',
+                'androidx',
+                'okio',
+                'javassist',
+                'com/google/gson',
+                'okhttp3'
+                //....and other you think could work
+        ]))
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.multidex:multidex:$multidex_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation "androidx.appcompat:appcompat:$androidx_core_version"
-    implementation "androidx.core:core-ktx:$androidx_core_version"
+    implementation "androidx.recyclerview:recyclerview:$androidx_core_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
     implementation "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     implementation project(':lib_core')
     implementation project(':lib_database')

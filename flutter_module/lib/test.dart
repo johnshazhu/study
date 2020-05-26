@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
+import 'package:flutter_module/api.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart' as extended;
@@ -21,6 +21,7 @@ class DoctorVCourse extends StatefulWidget {
 
 class DoctorVCourseState extends State<DoctorVCourse> {
   final _title;
+  String _content;
   bool _isInit = false;
   double _expandedHeight = 450.0;
   double _webviewHeight = 320.0;
@@ -37,7 +38,9 @@ class DoctorVCourseState extends State<DoctorVCourse> {
     package: 'flutter_gallery_assets',
   );
 
-  DoctorVCourseState(this._title);
+  DoctorVCourseState(this._title) {
+    _content = '新用户注册7天内，天天免费打开1个育儿锦囊';
+  }
 
   @override
   void initState() {
@@ -51,13 +54,43 @@ class DoctorVCourseState extends State<DoctorVCourse> {
     });*/
   }
 
+  void handleData(Map<String, dynamic> map) {
+    print(map);
+    GetCourseActivityInfoRsp info = GetCourseActivityInfoRsp.fromJson(map);
+    if (info != null) {
+      setState(() {
+        print("xdebug : update state");
+        print(info.data);
+        GetCourseActivityInfoData data = GetCourseActivityInfoData.fromJson(info.data);
+        print(json.encode(data));
+        if (data != null) {
+          print(data.courseActivityInfo);
+          if (data.courseActivityInfo != null) {
+            _content = data.courseActivityInfo.courseRemark;
+          }
+        }
+      });
+    }
+  }
+
+  void handleRsp(String deviceJson) {
+    print("xdebug handleRsp");
+    request(context, null, deviceJson, (map) => handleData(map));
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final width = size.width;
     final height = size.height;
-    print('build $width, $height');
+    print('xdebug build $width, $height');
     this.width = size.width;
+    if (!_isInit) {
+      _isInit = true;
+      Future<String> device = DefaultAssetBundle.of(context).loadString(
+          "assets/device.json");
+      device.then((deviceJson) => handleRsp(deviceJson));
+    }
     return Scaffold(
       appBar: CustomAppBar(
           canPop: true,
@@ -183,7 +216,7 @@ class DoctorVCourseState extends State<DoctorVCourse> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                           child: Text(
-                            '新用户注册7天内，天天免费打开1个育儿锦囊',
+                            _content,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 14.0,
@@ -340,7 +373,7 @@ class DoctorVCourseState extends State<DoctorVCourse> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 220, 0, 0),
                     child: Text(
-                      '新用户注册7天内，天天免费打开1个育儿锦囊',
+                      _content,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 14.0,
