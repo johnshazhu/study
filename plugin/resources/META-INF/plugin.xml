@@ -1,0 +1,25 @@
+<idea-plugin>
+  <id>com.insert.plugin.link</id>
+  <name>InsertLink</name>
+  <version>0.2</version>
+  <vendor email="250813797@qq.com" url="http://www.lamronba.com">lamronba</vendor>
+
+  <description>This is a simple plugin for injected code mark</description>
+
+  <change-notes>first initialization of this test plugin</change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html for description -->
+  <depends optional="true" config-file="withKotlin.xml">org.jetbrains.kotlin</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.insert.plugin.link.LineMarkerProvider"/>
+  </extensions>
+
+</idea-plugin>
