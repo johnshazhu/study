@@ -11,7 +11,7 @@ class OkHttpClientInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
 
-        Log.i("xdebug", request.url.toString())
+        Log.i("xdebug", request.url().toString())
 
         return chain.proceed(request)
     }

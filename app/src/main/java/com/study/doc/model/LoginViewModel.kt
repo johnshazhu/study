@@ -1,7 +1,7 @@
 package com.study.doc.model
 
 import androidx.databinding.Bindable
-import com.study.doc.test.BR
+import com.study.doc.BR
 
 class LoginViewModel : ObservableViewModel() {
     val data = TestViewModel()

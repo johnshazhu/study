@@ -137,7 +137,9 @@ class ByteCodeToSource {
                     break
 
                 case "new":
-                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    int high = ((int) ca.code[++byteCodeIndex]) << 8
+                    int low = (int) (ca.code[++byteCodeIndex] & 0xFF)
+                    cpIndex = high | low
                     println "cpIndex : ${cpIndex}"
                     isBeforeNew = useLocalVariable
                     if (cp.getTag(cpIndex) == ConstPool.CONST_Class) {
@@ -146,7 +148,9 @@ class ByteCodeToSource {
                     break
 
                 case "invokespecial":
-                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    int high = ((int) ca.code[++byteCodeIndex]) << 8
+                    int low = (int) (ca.code[++byteCodeIndex] & 0xFF)
+                    cpIndex = high | low
                     println "cpIndex : $cpIndex"
                     int size = argList.size()
                     if (size > 0 && !isBeforeNew) {
@@ -180,7 +184,9 @@ class ByteCodeToSource {
                     break
 
                 case "checkcast":
-                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    int high = ((int) ca.code[++byteCodeIndex]) << 8
+                    int low = (int) (ca.code[++byteCodeIndex] & 0xFF)
+                    cpIndex = high | low
                     println "cpIndex : $cpIndex"
                     if (cp.getTag(cpIndex) == ConstPool.CONST_Class) {
                         if (!argList.isEmpty()) {
@@ -197,7 +203,9 @@ class ByteCodeToSource {
                 case "invokestatic":
                     boolean isSameObj = false
                     boolean asParam = false
-                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    int high = ((int) ca.code[++byteCodeIndex]) << 8
+                    int low = (int) (ca.code[++byteCodeIndex] & 0xFF)
+                    cpIndex = high | low
                     println "cpIndex : $cpIndex, useLocalVariable : $useLocalVariable, isInstance : $isInstance"
                     if (cp.getTag(cpIndex) == ConstPool.CONST_Methodref) {
                         String methodType = cp.getMethodrefType(cpIndex)
@@ -297,7 +305,9 @@ class ByteCodeToSource {
                     break
 
                 case "getstatic":
-                    cpIndex = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
+                    int high = ((int) ca.code[++byteCodeIndex]) << 8
+                    int low = (int) (ca.code[++byteCodeIndex] & 0xFF)
+                    cpIndex = high | low
                     //println "cpIndex : $cpIndex"
                     String fieldType
                     if (cp.getTag(cpIndex) == ConstPool.CONST_Fieldref) {
@@ -331,8 +341,10 @@ class ByteCodeToSource {
                     break
 
                 case "sipush":
-                    int value = ca.code[++byteCodeIndex] << 8 | ca.code[++byteCodeIndex]
-                    println "value : $value"
+                    int high = ((int) ca.code[++byteCodeIndex]) << 8
+                    int low = (int) (ca.code[++byteCodeIndex] & 0xFF)
+                    int value = high | low
+                    println "value : $value, high : $high, low : $low"
                     argList.add(value)
                     break
 

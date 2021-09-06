@@ -117,7 +117,7 @@ Future request(BuildContext context, String url, String deviceJson, Function suc
   //"https://yxyapi2.drcuiyutao.com/yxy-vip-gateway/api/json/courseActivity/getCourseActivityInfo"
   try {
     if (url == null) {
-      url = "https://yxyapi2.com.study.com/yxy-vip-gateway/api/json/courseActivity/getCourseActivityInfo";
+      url = "https://yxyapi2.drcuiyutao.com/yxy-vip-gateway/api/json/courseActivity/getCourseActivityInfo";
     }
 
     print(deviceJson);
@@ -146,7 +146,7 @@ Future request(BuildContext context, String url, String deviceJson, Function suc
           (X509Certificate cert, String host, int port) => true;
     };
     dio.options
-      ..baseUrl = "https://yxyapi2.com.study.com/yxy-vip-gateway/api/json/"
+      ..baseUrl = "https://yxyapi2.drcuiyutao.com/yxy-vip-gateway/api/json/"
       ..connectTimeout = 5000
       ..receiveTimeout = 5000;
 

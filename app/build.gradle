@@ -25,6 +25,26 @@ android {
         versionCode version_code
         versionName version_name
         multiDexEnabled true
+        externalNativeBuild {
+
+            // For ndk-build, instead use ndkBuild {}
+            cmake {
+
+                // Passes optional arguments to CMake.
+                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+
+                // Sets optional flags for the C compiler.
+                cFlags "-D_EXAMPLE_C_FLAG1", "-D_EXAMPLE_C_FLAG2"
+
+                // Sets a flag to enable format macro constants for the C++ compiler.
+                cppFlags "-D__STDC_FORMAT_MACROS"
+            }
+        }
+
+        // 不能删除，库中只有armabi，但是三方库中有abi全支持的，所以需要保留，保证生成的apk中只有armabi的so
+        ndk {
+            setAbiFilters abi_filter.asCollection()
+        }
     }
     signingConfigs {
         myConfig {
@@ -48,10 +68,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            manifest.srcFile "src/main/AndroidManifest.xml"
+            jniLibs.srcDirs = ["src/main/libs"]
+            java.srcDirs = ["src/main/java"]
+        }
+    }
+
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+
     flavorDimensions "brand"
     productFlavors {
         picasso {
@@ -107,6 +136,7 @@ dependencies {
     implementation project(':lib_core')
     implementation project(':lib_database')
     implementation project(':lib_okhttp')
+    implementation project(':lib_ffmpeg')
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "android.arch.persistence.room:rxjava2:$rxjava2_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
@@ -114,5 +144,5 @@ dependencies {
     implementation "com.lib.annotation:lib_annotation:$lib_annotation_version"
     implementation "org.javassist:javassist:$javassist_version"
 
-    implementation project(':flutter')
+//    implementation project(':flutter')
 }

@@ -10,7 +10,7 @@ import java.lang.Exception
 object PicassoUtil {
     val TAG = PicassoUtil::class.java.simpleName
 
-    @Insert(classPath = "com.com.study.lib.image.ImageUtil", name = "displayImage", replace = true)
+    //@Insert(classPath = "com.study.lib.image.ImageUtil", name = "displayImage", replace = true)
     fun displayImage(url: String, view: ImageView) {
         Log.i("PicassoUtil", "displayImage use Picasso!!!")
         Picasso.Builder(view.context)

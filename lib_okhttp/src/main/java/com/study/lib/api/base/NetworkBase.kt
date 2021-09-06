@@ -34,7 +34,7 @@ class NetworkBase<T: Any> private constructor(serviceCls: Class<T>?) {
         builder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_WRITE_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(READ_WRITE_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(interceptor = OkHttpClientInterceptor())
+            .addInterceptor(OkHttpClientInterceptor().also { interceptor = it })
 
         val dns = HttpDnsUtil.getDns()
         if (dns != null) {
@@ -45,7 +45,7 @@ class NetworkBase<T: Any> private constructor(serviceCls: Class<T>?) {
         builder.sslSocketFactory(SSLUtil.createSSLSocketFactory(trustManager), trustManager)
             .hostnameVerifier(SSLUtil.TrustAllHostnameVerifier())
         okHttpClient = builder.build()
-        var baseUrl: String? = "https://testyxyapi2.com.study.com/"
+        var baseUrl: String? = "https://testyxyapi2.drcuiyutao.com/"
         baseUrl?.let {
             if (!baseUrl.endsWith("/")) {
                 baseUrl += "/"

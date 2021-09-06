@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.Intent.ACTION_OPEN_DOCUMENT
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View.GONE
 import androidx.databinding.DataBindingUtil
@@ -15,14 +16,20 @@ import com.study.doc.api.APIService
 import com.study.doc.api.CommentApiService
 import com.study.doc.model.LoginViewModel
 import com.study.lib.api.base.*
-import com.study.doc.test.databinding.ActivityMainBinding
+import com.study.doc.databinding.ActivityMainBinding
 import com.study.doc.test.widget.MyAdapter
 import com.study.lib.util.ClassFileParse
 import com.study.lib.util.LogUtil
 import com.study.lib.util.TestA
 import com.study.lib.util.TestB
 import com.google.gson.Gson
+import com.study.doc.R
+import com.study.doc.third.FFmpegUtil
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -39,12 +46,39 @@ class MainActivity : BaseActivity(), ResponseListener<APIBaseResponse<StartUpDat
 
         data.text = "This is Hello World!"
         data.color = 0xFF4A4A or (0xFF0000 shl 8)
-        data.imageUrl = "https://qns.ivybaby.me//20190705/20190705103454/ea58752472d8486695e0de182fad0d29.jpg?imageView2/1/w/306/h/360"
+        data.imageUrl = "https://qns.ivybaby.me//20190705/20190705103454/ea58752472d8486695e0de182fad0d29.jpg?imageView2/1/w/640/h/360"
 
         val context = this
         binding.test = data
-        binding.image.setOnClickListener { startActivity(Intent(context, /*TestPagerActivity*/FlutterTestActivity::class.java)) }
+        binding.image.setOnClickListener {
+            startActivity(Intent(context, TestPagerActivity::class.java))
+            /*val input = Environment.getExternalStorageDirectory().absolutePath + "/testq.mp4"
+            val output = Environment.getExternalStorageDirectory().absolutePath + "/video_frame.jpeg"
+            Observable
+                .create(ObservableOnSubscribe<String> {
+                    FFmpegUtil.video_decode(input, output)
+                    it.onComplete()
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Observer<String> {
+                    override fun onComplete() {
+                        LogUtil.debug("onComplete")
+                    }
 
+                    override fun onSubscribe(d: Disposable) {
+                        LogUtil.debug("onSubscribe")
+                    }
+
+                    override fun onNext(t: String) {
+                        LogUtil.debug("onNext")
+                    }
+
+                    override fun onError(e: Throwable) {
+                        LogUtil.debug("onError")
+                    }
+                })*/
+        }
         binding.viewmodel = LoginViewModel()
         val myDataset = Array(26) { i -> (i + 65).toChar().toString() }
         viewManager = LinearLayoutManager(this)

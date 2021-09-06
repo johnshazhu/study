@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dialog_bg_night">#2C2C2C</color>
+    <color name="dialog_title_night">#999999</color>
+    <color name="dialog_text_night">#999999</color>
+    <color name="dialog_left_button_night">#999999</color>
+    <color name="dialog_right_button_night">#4FA38B</color>
+    <color name="dialog_divider_night">#555555</color>
+
+    <color name="c8_night">#4FA38B</color>
+</resources>

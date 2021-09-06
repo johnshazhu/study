@@ -107,26 +107,43 @@ class CustomClassPool extends ClassPool {
     }
 
     void injectPrepare(File file) {
-        if (!targetMap.containsKey(file.absolutePath)) {
+        /*if (!targetMap.containsKey(file.absolutePath) && !file.absolutePath.contains("MainActivity")) {
             return
-        }
+        }*/
 
         InputStream inputStream = new FileInputStream(file)
         CtClass ctClass = makeClass(inputStream)
+
+        CtClass targetClass = null
+        CtClass[] interfaces = ctClass.getInterfaces()
+        if (interfaces != null && interfaces.length > 0) {
+            for (CtClass item : interfaces) {
+                if (targetMap.containsKey(item.name)) {
+                    targetClass = item
+                    break
+                }
+            }
+        }
+
+        if (targetClass == null) {
+            ctClass.detach()
+            return
+        }
+
         map[file.absolutePath] = ctClass.name
 
         if (inputStream != null) {
             inputStream.close()
         }
 
-        checkInsertCode(file.absolutePath, ctClass)
+        checkInsertCode(file.absolutePath, ctClass, targetClass)
     }
 
     boolean isContainInsertCode(String name) {
         return insertMap.containsKey(name)
     }
 
-    void traverseInsertInfo(CtMember[] ctMembers, CtClass ctClass) {
+    void traverseInsertInfo(CtMember[] ctMembers, CtClass ctClass, CtClass interfaceClass) {
         if (ctMembers.length > 0) {
             for (CtMember member : ctMembers) {
                 if (member.hasAnnotation(Insert.class)) {
@@ -136,18 +153,32 @@ class CustomClassPool extends ClassPool {
                         println "field annotation : ${member}"
                     } else if (member instanceof CtMethod) {
                         info.srcMtd = member
-                        println "method annotation : ${member}"
+                        println "method annotation : ${member}, targetClassName : $targetClassName, target : $targetCtClass"
                     }
 
                     info.ctClassName = ctClass.name
                     list.add(info)
+                } else if (interfaceClass != null) {
+                    CtMethod[] interfaceMtds = interfaceClass.getMethods()
+                    for (CtMethod mtd : interfaceMtds) {
+                        if (member.name == mtd.name) {
+                            InsertInfo info = new InsertInfo()
+                            info.srcMtd = member
+                            info.param = member.getParameterTypes()
+                            info.ctClassName = ctClass.name
+                            list.add(info)
+                            println("interface methods $member")
+                            break
+                        }
+                    }
                 }
             }
         }
     }
 
-    void checkInsertCode(String name, CtClass ctClass) {
-        if (!targetMap.containsKey(name) && !targetMap.containsKey(ctClass.name)) {
+    void checkInsertCode(String name, CtClass ctClass, CtClass interfaceClass) {
+        if (!targetMap.containsKey(name) && !targetMap.containsKey(ctClass.name)
+                && (interfaceClass == null || !targetMap.containsKey(interfaceClass.name))) {
             ctClass.detach()
             return
         }
@@ -159,10 +190,10 @@ class CustomClassPool extends ClassPool {
         }
 
         //遍历当前class文件中的字段, 找到有注入注解的字段, 添加到注入列表中
-        traverseInsertInfo(ctClass.getDeclaredFields(), ctClass)
+        traverseInsertInfo(ctClass.getDeclaredFields(), ctClass, null)
 
         //遍历当前class文件中的方法, 找到有注入注解的方法, 添加到注入列表中
-        traverseInsertInfo(ctClass.methods, ctClass)
+        traverseInsertInfo(ctClass.methods, ctClass, interfaceClass)
     }
 
     boolean injectItem(String clsName, String directoryName) {
@@ -179,11 +210,13 @@ class CustomClassPool extends ClassPool {
 
             CtField[] fields = targetCtCls.getDeclaredFields()
             CtMethod[] methods = targetCtCls.getMethods()
+            println "fields : $fields, methods : $methods"
             for (InsertInfo item : insertInfoList) {
+                println "$item"
                 if (item.srcField != null) {
                     injectField(fields, item.srcField, targetCtCls, directoryName)
                 } else if (item.srcMtd != null) {
-                    injectMethod(methods, item.srcMtd, item.ctClassName, directoryName)
+                    injectMethod(methods, item, directoryName)
                 }
             }
 
@@ -264,23 +297,38 @@ class CustomClassPool extends ClassPool {
         }
     }
 
-    void injectMethod(CtMethod[] methods, CtMethod srcMethod, String srcClsName, String directoryName) {
+    void injectMethod(CtMethod[] methods, InsertInfo item, String directoryName) {
+        CtMethod srcMethod = item.srcMtd
+        String srcClsName = item.ctClassName
         Insert annotation = srcMethod.getAnnotation(Insert.class)
         String clsName = getInjectTargetClassName(srcMethod)
         CtClass targetCtCls = get(clsName)
         if (targetCtCls.isFrozen()) {
             targetCtCls.defrost()
         }
+        println "clsName : $clsName, targetClass: $targetCtCls, srcClsName : $srcClsName"
+        CtMethod another = null
         for (CtMethod m : methods) {
+            println "name : ${m.name}"
             if (m.name == annotation.name()) {
                 CtClass mtdCls = get(srcClsName)
                 if (mtdCls.isFrozen()) {
                     mtdCls.defrost()
                 }
 
+                println "item.isInterface : ${item.isInterface}"
+                if (item.isInterface) {
+                    another = mtdCls.getDeclaredMethod(m.name, item.param)
+                    println "another $another"
+                }
+
                 String code
                 if (Modifier.isPublic(srcMethod.getModifiers()) && Modifier.isStatic(srcMethod.getModifiers())) {
                     code = mtdCls.name + "." + srcMethod.name + "(\$\$);"
+                    if (srcMethod.returnType == CtClass.booleanType) {
+                        String tmp = code.substring(0, code.length() - 1)
+                        code = "if ($tmp) return;"
+                    }
                 } else {
                     try {
                         code = ByteCodeToSource.getSourceTextByByteCode(mtdCls, srcMethod, annotation.replace())
@@ -302,10 +350,17 @@ class CustomClassPool extends ClassPool {
                     }
                     m.setBody(srcMethod, null)*/
                 } else if (annotation.before()) {
-                    m.insertBefore(code)
+                    if (another != null) {
+                        println "another insert before"
+                        another.insertBefore(code)
+                        println "another insert end"
+                    } else {
+                        m.insertBefore(code)
+                    }
                 } else {
                     m.insertAfter(code)
                 }
+                println "before write"
                 if (directoryName != null && !directoryName.isEmpty()) {
                     targetCtCls.writeFile(directoryName)
                     println "writeFile directoryName : ${directoryName}, cls : ${clsName}"

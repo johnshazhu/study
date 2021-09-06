@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_name_calendar">日历</string>
+    <string name="permission_name_camera">相机</string>
+    <string name="permission_name_contacts">通讯录</string>
+    <string name="permission_name_location">位置信息</string>
+    <string name="permission_name_microphone">麦克风</string>
+    <string name="permission_name_phone">电话</string>
+    <string name="permission_name_sensors">身体传感器</string>
+    <string name="permission_name_sms">短信</string>
+    <string name="permission_name_storage">存储空间</string>
+    <string name="permission_name_system_alert_window">出现在其他应用上</string>
+
+    <string name="loading">加载中&#8230;</string>
+    <string name="no_network">网络连不上了，检查一下吧</string>
+    <string name="network_exception">与服务器连接中断&#8230;请稍候重试</string>
+    <string name="data_exception">数据异常</string>
+
+    <string name="lib_comment_now">刚刚</string>
+    <string name="lib_comment_sec" formatted="false">%d秒前</string>
+    <string name="lib_comment_min" formatted="false">%d分钟前</string>
+    <string name="lib_comment_hour" formatted="false">%d小时前</string>
+    <string name="lib_comment_day" formatted="false">%d天前</string>
+</resources>

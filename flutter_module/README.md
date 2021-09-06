@@ -11,3 +11,9 @@ For help getting started with Flutter, view our online
 [json序列化](https://flutterchina.club/json/)
 使用_watcher_可以使我们的源代码生成的过程更加方便。它会监视我们项目中文件的变化，并在需要时自动构建必要的文件。我们可以通过
 flutter packages pub run build_runner watch在项目根目录下运行来启动_watcher_。
+
+#Waiting for another flutter command to release the startup lock
+#other
+killall -9 dart
+#windows dart进程Kill
+taskkill /F /IM dart.exe

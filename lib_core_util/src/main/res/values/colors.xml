@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dialog_bg">#FFFFFF</color>
+    <color name="dialog_title">#646464</color>
+    <color name="dialog_text">#646464</color>
+    <color name="dialog_left_button">#8A8A8A</color>
+    <color name="dialog_right_button">#55CEAC</color>
+    <color name="dialog_divider">#979797</color>
+
+    <drawable name="transparent">#00000000</drawable>
+
+    <color name="toast_view_bg">#55CEAC</color>
+    <color name="toast_view_text">#FFFFFF</color>
+
+    <color name="c8">#55CEAC</color>
+</resources>

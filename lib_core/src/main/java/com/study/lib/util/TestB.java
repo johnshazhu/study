@@ -23,4 +23,8 @@ public class TestB {
     public void showCount(int count) {
         Log.i("xdebug", "count : " + count);
     }
+
+    public static void testCode(String msg) {
+        Log.i("xdebug", "testCode original code");
+    }
 }

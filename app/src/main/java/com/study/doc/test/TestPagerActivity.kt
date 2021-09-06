@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
-import com.study.doc.test.databinding.ActivityTestPagerBinding
-import com.study.doc.test.databinding.PagerItemBinding
+import com.study.doc.R
+import com.study.doc.databinding.ActivityTestPagerBinding
+import com.study.doc.databinding.PagerItemBinding
 import com.study.doc.test.widget.TestPagerAdapter
 import java.util.*
 import kotlin.collections.ArrayList

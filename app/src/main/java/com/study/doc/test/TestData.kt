@@ -2,6 +2,7 @@ package com.study.doc.test
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.study.doc.BR
 
 class TestData : BaseObservable() {
     @get: Bindable

@@ -171,7 +171,7 @@ class AnnotationPlugin extends Transform implements Plugin<Project> {
                 InputStream inputStream = jarFile.getInputStream(jarEntry)
                 CtClass ctClass = null
                 if (!Util.isFilterClassFile(entryName)) {
-                    clsPool.checkInsertCode(entryName, ctClass = clsPool.makeClass(inputStream))
+                    clsPool.checkInsertCode(entryName, ctClass = clsPool.makeClass(inputStream), null)
                 }
                 //插桩class
                 if ("TestAsm.class" == entryName) {
