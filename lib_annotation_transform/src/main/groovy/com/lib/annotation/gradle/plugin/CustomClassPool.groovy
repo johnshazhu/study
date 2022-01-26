@@ -115,12 +115,14 @@ class CustomClassPool extends ClassPool {
         CtClass ctClass = makeClass(inputStream)
 
         CtClass targetClass = null
-        CtClass[] interfaces = ctClass.getInterfaces()
-        if (interfaces != null && interfaces.length > 0) {
-            for (CtClass item : interfaces) {
-                if (targetMap.containsKey(item.name)) {
-                    targetClass = item
-                    break
+        if (ctClass.isInterface()) {
+            CtClass[] interfaces = ctClass.getInterfaces()
+            if (interfaces != null && interfaces.length > 0) {
+                for (CtClass item : interfaces) {
+                    if (targetMap.containsKey(item.name)) {
+                        targetClass = item
+                        break
+                    }
                 }
             }
         }
@@ -153,7 +155,7 @@ class CustomClassPool extends ClassPool {
                         println "field annotation : ${member}"
                     } else if (member instanceof CtMethod) {
                         info.srcMtd = member
-                        println "method annotation : ${member}, targetClassName : $targetClassName, target : $targetCtClass"
+                        println "method annotation : ${member}"
                     }
 
                     info.ctClassName = ctClass.name

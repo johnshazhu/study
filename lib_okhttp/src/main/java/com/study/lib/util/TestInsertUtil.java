@@ -19,9 +19,9 @@ public class TestInsertUtil {
         Log.i("TestInsertUtil", "testB third inject core");
     }
 
-    //@Insert(classPath = "com.study.lib.util.TestB", name = "test", replace = true)
+    @Insert(classPath = "com.study.lib.util.TestB", name = "test", replace = true)
     public void test(String msg) {
-        System.out.println(msg);
+        Log.i("TestInsertUtil", msg);
         Log.i("TestInsertUtil", "inject core-insert after");
     }
 
