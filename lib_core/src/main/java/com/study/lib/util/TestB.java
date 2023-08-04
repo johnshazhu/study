@@ -16,7 +16,7 @@ public class TestB {
     }
 
     public void testField() {
-        Log.i("xdebug",  "modify field " + (TAG == null ? "fail" : "success"));
+        Log.i("xdebug",  "modify field tag : " + (TAG == null ? "fail" : "success") + " -> " + TAG);
         showCount(COUNT);
     }
 
