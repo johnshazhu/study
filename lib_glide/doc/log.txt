@@ -1,0 +1,1093 @@
+Executing tasks: [:app:assembleGlideDebug] in project /Users/breeze/StudioProjects/study
+
+
+> Configure project :app
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+AnnotationPlugin apply start
+AnnotationPlugin apply end
+task : prepareLintJar
+task : prepareLintJarForPublish
+task : createMockableJar
+task : connectedAndroidTest
+task : deviceAndroidTest
+task : test
+task : assembleGlideDebug
+task : bundleGlideDebug
+task : preGlideDebugBuild
+task : generateGlideDebugSources
+task : generateGlideDebugResources
+task : generateGlideDebugAssets
+task : compileGlideDebugSources
+task : checkGlideDebugManifest
+task : writeGlideDebugModuleMetadata
+task : writeGlideDebugApplicationId
+task : mainApkListPersistenceGlideDebug
+task : reportBuildArtifactsGlideDebug
+task : createGlideDebugCompatibleScreenManifests
+task : processGlideDebugManifest
+task : generateGlideDebugResValues
+task : compileGlideDebugRenderscript
+task : mergeGlideDebugResources
+task : mergeGlideDebugShaders
+task : compileGlideDebugShaders
+task : mergeGlideDebugAssets
+task : generateGlideDebugBuildConfig
+task : processGlideDebugResources
+task : bundleGlideDebugResources
+task : processGlideDebugJavaRes
+task : compileGlideDebugAidl
+task : mergeGlideDebugJniLibFolders
+task : mergeGlideDebugNativeLibs
+task : generateGlideDebugFeatureMetadata
+task : validateSigningGlideDebug
+task : signingConfigWriterGlideDebug
+task : dataBindingExportFeaturePackageIdsGlideDebug
+task : dataBindingMergeGenClassesGlideDebug
+task : dataBindingMergeDependencyArtifactsGlideDebug
+task : dataBindingExportBuildInfoGlideDebug
+task : dataBindingGenBaseClassesGlideDebug
+task : javaPreCompileGlideDebug
+task : compileGlideDebugJavaWithJavac
+task : bundleGlideDebugClasses
+task : mergeGlideDebugGeneratedProguardFiles
+task : mergeGlideDebugJavaResource
+task : transformClassesWithAnnotationPluginForGlideDebug
+task : multiDexListGlideDebug
+task : transformClassesWithDexBuilderForGlideDebug
+task : checkGlideDebugDuplicateClasses
+task : mergeExtDexGlideDebug
+task : mergeProjectDexGlideDebug
+task : mergeLibDexGlideDebug
+task : stripGlideDebugDebugSymbols
+task : packageGlideDebug
+task : installGlideDebug
+task : uninstallGlideDebug
+task : lintGlideDebug
+task : generateGlideDebugFeatureTransitiveDeps
+task : buildGlideDebugPreBundle
+task : collectGlideDebugDependencies
+task : packageGlideDebugBundle
+task : signGlideDebugBundle
+task : configureGlideDebugDependencies
+task : makeApkFromBundleForGlideDebug
+task : packageGlideDebugUniversalApk
+task : extractApksForGlideDebug
+task : assembleGlideDebugUnitTest
+task : preGlideDebugUnitTestBuild
+task : generateGlideDebugUnitTestSources
+task : generateGlideDebugUnitTestResources
+task : generateGlideDebugUnitTestAssets
+task : compileGlideDebugUnitTestSources
+task : processGlideDebugUnitTestJavaRes
+task : dummyglideDebugUnitTest
+task : javaPreCompileGlideDebugUnitTest
+task : compileGlideDebugUnitTestJavaWithJavac
+task : bundleGlideDebugUnitTestClasses
+task : testGlideDebugUnitTest
+task : assembleGlideRelease
+task : bundleGlideRelease
+task : preGlideReleaseBuild
+task : generateGlideReleaseSources
+task : generateGlideReleaseResources
+task : generateGlideReleaseAssets
+task : compileGlideReleaseSources
+task : checkGlideReleaseManifest
+task : writeGlideReleaseModuleMetadata
+task : writeGlideReleaseApplicationId
+task : mainApkListPersistenceGlideRelease
+task : reportBuildArtifactsGlideRelease
+task : createGlideReleaseCompatibleScreenManifests
+task : processGlideReleaseManifest
+task : generateGlideReleaseResValues
+task : compileGlideReleaseRenderscript
+task : mergeGlideReleaseResources
+task : mergeGlideReleaseShaders
+task : compileGlideReleaseShaders
+task : mergeGlideReleaseAssets
+task : generateGlideReleaseBuildConfig
+task : processGlideReleaseResources
+task : bundleGlideReleaseResources
+task : processGlideReleaseJavaRes
+task : compileGlideReleaseAidl
+task : mergeGlideReleaseJniLibFolders
+task : mergeGlideReleaseNativeLibs
+task : generateGlideReleaseFeatureMetadata
+task : validateSigningGlideRelease
+task : signingConfigWriterGlideRelease
+task : dataBindingExportFeaturePackageIdsGlideRelease
+task : dataBindingMergeGenClassesGlideRelease
+task : dataBindingMergeDependencyArtifactsGlideRelease
+task : dataBindingExportBuildInfoGlideRelease
+task : dataBindingGenBaseClassesGlideRelease
+task : javaPreCompileGlideRelease
+task : compileGlideReleaseJavaWithJavac
+task : bundleGlideReleaseClasses
+task : mergeGlideReleaseGeneratedProguardFiles
+task : mergeGlideReleaseJavaResource
+task : transformClassesWithAnnotationPluginForGlideRelease
+task : transformClassesAndResourcesWithR8ForGlideRelease
+task : stripGlideReleaseDebugSymbols
+task : packageGlideRelease
+task : installGlideRelease
+task : uninstallGlideRelease
+task : lintVitalGlideRelease
+task : lintGlideRelease
+task : generateGlideReleaseFeatureTransitiveDeps
+task : buildGlideReleasePreBundle
+task : collectGlideReleaseDependencies
+task : packageGlideReleaseBundle
+task : signGlideReleaseBundle
+task : configureGlideReleaseDependencies
+task : makeApkFromBundleForGlideRelease
+task : packageGlideReleaseUniversalApk
+task : extractApksForGlideRelease
+task : assembleGlideReleaseUnitTest
+task : preGlideReleaseUnitTestBuild
+task : generateGlideReleaseUnitTestSources
+task : generateGlideReleaseUnitTestResources
+task : generateGlideReleaseUnitTestAssets
+task : compileGlideReleaseUnitTestSources
+task : processGlideReleaseUnitTestJavaRes
+task : dummyglideReleaseUnitTest
+task : javaPreCompileGlideReleaseUnitTest
+task : compileGlideReleaseUnitTestJavaWithJavac
+task : bundleGlideReleaseUnitTestClasses
+task : testGlideReleaseUnitTest
+task : assembleGlideDebugAndroidTest
+task : preGlideDebugAndroidTestBuild
+task : generateGlideDebugAndroidTestSources
+task : generateGlideDebugAndroidTestResources
+task : generateGlideDebugAndroidTestAssets
+task : compileGlideDebugAndroidTestSources
+task : mainApkListPersistenceGlideDebugAndroidTest
+task : processGlideDebugAndroidTestManifest
+task : generateGlideDebugAndroidTestResValues
+task : compileGlideDebugAndroidTestRenderscript
+task : mergeGlideDebugAndroidTestResources
+task : mergeGlideDebugAndroidTestShaders
+task : compileGlideDebugAndroidTestShaders
+task : mergeGlideDebugAndroidTestAssets
+task : generateGlideDebugAndroidTestBuildConfig
+task : processGlideDebugAndroidTestResources
+task : bundleGlideDebugAndroidTestResources
+task : processGlideDebugAndroidTestJavaRes
+task : compileGlideDebugAndroidTestAidl
+task : mergeGlideDebugAndroidTestJniLibFolders
+task : mergeGlideDebugAndroidTestNativeLibs
+task : javaPreCompileGlideDebugAndroidTest
+task : compileGlideDebugAndroidTestJavaWithJavac
+task : bundleGlideDebugAndroidTestClasses
+task : mergeGlideDebugAndroidTestGeneratedProguardFiles
+task : mergeGlideDebugAndroidTestJavaResource
+task : transformClassesWithAnnotationPluginForGlideDebugAndroidTest
+task : multiDexListGlideDebugAndroidTest
+task : transformClassesWithDexBuilderForGlideDebugAndroidTest
+task : checkGlideDebugAndroidTestDuplicateClasses
+task : mergeExtDexGlideDebugAndroidTest
+task : mergeProjectDexGlideDebugAndroidTest
+task : mergeLibDexGlideDebugAndroidTest
+task : validateSigningGlideDebugAndroidTest
+task : signingConfigWriterGlideDebugAndroidTest
+task : packageGlideDebugAndroidTest
+task : installGlideDebugAndroidTest
+task : uninstallGlideDebugAndroidTest
+task : connectedGlideDebugAndroidTest
+task : assemblePicassoDebug
+task : bundlePicassoDebug
+task : prePicassoDebugBuild
+task : generatePicassoDebugSources
+task : generatePicassoDebugResources
+task : generatePicassoDebugAssets
+task : compilePicassoDebugSources
+task : checkPicassoDebugManifest
+task : writePicassoDebugModuleMetadata
+task : writePicassoDebugApplicationId
+task : mainApkListPersistencePicassoDebug
+task : reportBuildArtifactsPicassoDebug
+task : createPicassoDebugCompatibleScreenManifests
+task : processPicassoDebugManifest
+task : generatePicassoDebugResValues
+task : compilePicassoDebugRenderscript
+task : mergePicassoDebugResources
+task : mergePicassoDebugShaders
+task : compilePicassoDebugShaders
+task : mergePicassoDebugAssets
+task : generatePicassoDebugBuildConfig
+task : processPicassoDebugResources
+task : bundlePicassoDebugResources
+task : processPicassoDebugJavaRes
+task : compilePicassoDebugAidl
+task : mergePicassoDebugJniLibFolders
+task : mergePicassoDebugNativeLibs
+task : generatePicassoDebugFeatureMetadata
+task : validateSigningPicassoDebug
+task : signingConfigWriterPicassoDebug
+task : dataBindingExportFeaturePackageIdsPicassoDebug
+task : dataBindingMergeGenClassesPicassoDebug
+task : dataBindingMergeDependencyArtifactsPicassoDebug
+task : dataBindingExportBuildInfoPicassoDebug
+task : dataBindingGenBaseClassesPicassoDebug
+task : javaPreCompilePicassoDebug
+task : compilePicassoDebugJavaWithJavac
+task : bundlePicassoDebugClasses
+task : mergePicassoDebugGeneratedProguardFiles
+task : mergePicassoDebugJavaResource
+task : transformClassesWithAnnotationPluginForPicassoDebug
+task : multiDexListPicassoDebug
+task : transformClassesWithDexBuilderForPicassoDebug
+task : checkPicassoDebugDuplicateClasses
+task : mergeExtDexPicassoDebug
+task : mergeProjectDexPicassoDebug
+task : mergeLibDexPicassoDebug
+task : stripPicassoDebugDebugSymbols
+task : packagePicassoDebug
+task : installPicassoDebug
+task : uninstallPicassoDebug
+task : lintPicassoDebug
+task : generatePicassoDebugFeatureTransitiveDeps
+task : buildPicassoDebugPreBundle
+task : collectPicassoDebugDependencies
+task : packagePicassoDebugBundle
+task : signPicassoDebugBundle
+task : configurePicassoDebugDependencies
+task : makeApkFromBundleForPicassoDebug
+task : packagePicassoDebugUniversalApk
+task : extractApksForPicassoDebug
+task : assemblePicassoDebugUnitTest
+task : prePicassoDebugUnitTestBuild
+task : generatePicassoDebugUnitTestSources
+task : generatePicassoDebugUnitTestResources
+task : generatePicassoDebugUnitTestAssets
+task : compilePicassoDebugUnitTestSources
+task : processPicassoDebugUnitTestJavaRes
+task : dummypicassoDebugUnitTest
+task : javaPreCompilePicassoDebugUnitTest
+task : compilePicassoDebugUnitTestJavaWithJavac
+task : bundlePicassoDebugUnitTestClasses
+task : testPicassoDebugUnitTest
+task : assemblePicassoRelease
+task : bundlePicassoRelease
+task : prePicassoReleaseBuild
+task : generatePicassoReleaseSources
+task : generatePicassoReleaseResources
+task : generatePicassoReleaseAssets
+task : compilePicassoReleaseSources
+task : checkPicassoReleaseManifest
+task : writePicassoReleaseModuleMetadata
+task : writePicassoReleaseApplicationId
+task : mainApkListPersistencePicassoRelease
+task : reportBuildArtifactsPicassoRelease
+task : createPicassoReleaseCompatibleScreenManifests
+task : processPicassoReleaseManifest
+task : generatePicassoReleaseResValues
+task : compilePicassoReleaseRenderscript
+task : mergePicassoReleaseResources
+task : mergePicassoReleaseShaders
+task : compilePicassoReleaseShaders
+task : mergePicassoReleaseAssets
+task : generatePicassoReleaseBuildConfig
+task : processPicassoReleaseResources
+task : bundlePicassoReleaseResources
+task : processPicassoReleaseJavaRes
+task : compilePicassoReleaseAidl
+task : mergePicassoReleaseJniLibFolders
+task : mergePicassoReleaseNativeLibs
+task : generatePicassoReleaseFeatureMetadata
+task : validateSigningPicassoRelease
+task : signingConfigWriterPicassoRelease
+task : dataBindingExportFeaturePackageIdsPicassoRelease
+task : dataBindingMergeGenClassesPicassoRelease
+task : dataBindingMergeDependencyArtifactsPicassoRelease
+task : dataBindingExportBuildInfoPicassoRelease
+task : dataBindingGenBaseClassesPicassoRelease
+task : javaPreCompilePicassoRelease
+task : compilePicassoReleaseJavaWithJavac
+task : bundlePicassoReleaseClasses
+task : mergePicassoReleaseGeneratedProguardFiles
+task : mergePicassoReleaseJavaResource
+task : transformClassesWithAnnotationPluginForPicassoRelease
+task : transformClassesAndResourcesWithR8ForPicassoRelease
+task : stripPicassoReleaseDebugSymbols
+task : packagePicassoRelease
+task : installPicassoRelease
+task : uninstallPicassoRelease
+task : lintVitalPicassoRelease
+task : lintPicassoRelease
+task : generatePicassoReleaseFeatureTransitiveDeps
+task : buildPicassoReleasePreBundle
+task : collectPicassoReleaseDependencies
+task : packagePicassoReleaseBundle
+task : signPicassoReleaseBundle
+task : configurePicassoReleaseDependencies
+task : makeApkFromBundleForPicassoRelease
+task : packagePicassoReleaseUniversalApk
+task : extractApksForPicassoRelease
+task : assemblePicassoReleaseUnitTest
+task : prePicassoReleaseUnitTestBuild
+task : generatePicassoReleaseUnitTestSources
+task : generatePicassoReleaseUnitTestResources
+task : generatePicassoReleaseUnitTestAssets
+task : compilePicassoReleaseUnitTestSources
+task : processPicassoReleaseUnitTestJavaRes
+task : dummypicassoReleaseUnitTest
+task : javaPreCompilePicassoReleaseUnitTest
+task : compilePicassoReleaseUnitTestJavaWithJavac
+task : bundlePicassoReleaseUnitTestClasses
+task : testPicassoReleaseUnitTest
+task : assemblePicassoDebugAndroidTest
+task : prePicassoDebugAndroidTestBuild
+task : generatePicassoDebugAndroidTestSources
+task : generatePicassoDebugAndroidTestResources
+task : generatePicassoDebugAndroidTestAssets
+task : compilePicassoDebugAndroidTestSources
+task : mainApkListPersistencePicassoDebugAndroidTest
+task : processPicassoDebugAndroidTestManifest
+task : generatePicassoDebugAndroidTestResValues
+task : compilePicassoDebugAndroidTestRenderscript
+task : mergePicassoDebugAndroidTestResources
+task : mergePicassoDebugAndroidTestShaders
+task : compilePicassoDebugAndroidTestShaders
+task : mergePicassoDebugAndroidTestAssets
+task : generatePicassoDebugAndroidTestBuildConfig
+task : processPicassoDebugAndroidTestResources
+task : bundlePicassoDebugAndroidTestResources
+task : processPicassoDebugAndroidTestJavaRes
+task : compilePicassoDebugAndroidTestAidl
+task : mergePicassoDebugAndroidTestJniLibFolders
+task : mergePicassoDebugAndroidTestNativeLibs
+task : javaPreCompilePicassoDebugAndroidTest
+task : compilePicassoDebugAndroidTestJavaWithJavac
+task : bundlePicassoDebugAndroidTestClasses
+task : mergePicassoDebugAndroidTestGeneratedProguardFiles
+task : mergePicassoDebugAndroidTestJavaResource
+task : transformClassesWithAnnotationPluginForPicassoDebugAndroidTest
+task : multiDexListPicassoDebugAndroidTest
+task : transformClassesWithDexBuilderForPicassoDebugAndroidTest
+task : checkPicassoDebugAndroidTestDuplicateClasses
+task : mergeExtDexPicassoDebugAndroidTest
+task : mergeProjectDexPicassoDebugAndroidTest
+task : mergeLibDexPicassoDebugAndroidTest
+task : validateSigningPicassoDebugAndroidTest
+task : signingConfigWriterPicassoDebugAndroidTest
+task : packagePicassoDebugAndroidTest
+task : installPicassoDebugAndroidTest
+task : uninstallPicassoDebugAndroidTest
+task : connectedPicassoDebugAndroidTest
+task : reportSourceSetTransformAndroidTest
+task : reportSourceSetTransformAndroidTestDebug
+task : reportSourceSetTransformAndroidTestGlide
+task : reportSourceSetTransformAndroidTestGlideDebug
+task : reportSourceSetTransformAndroidTestPicasso
+task : reportSourceSetTransformAndroidTestPicassoDebug
+task : reportSourceSetTransformDebug
+task : reportSourceSetTransformGlide
+task : reportSourceSetTransformGlideDebug
+task : reportSourceSetTransformGlideRelease
+task : reportSourceSetTransformMain
+task : reportSourceSetTransformPicasso
+task : reportSourceSetTransformPicassoDebug
+task : reportSourceSetTransformPicassoRelease
+task : reportSourceSetTransformRelease
+task : reportSourceSetTransformTest
+task : reportSourceSetTransformTestDebug
+task : reportSourceSetTransformTestGlide
+task : reportSourceSetTransformTestGlideDebug
+task : reportSourceSetTransformTestGlideRelease
+task : reportSourceSetTransformTestPicasso
+task : reportSourceSetTransformTestPicassoDebug
+task : reportSourceSetTransformTestPicassoRelease
+task : reportSourceSetTransformTestRelease
+task : androidDependencies
+task : signingReport
+task : compileGlideDebugAndroidTestKotlin
+task : compileGlideDebugUnitTestKotlin
+task : compileGlideDebugKotlin
+task : compileGlideReleaseUnitTestKotlin
+task : compileGlideReleaseKotlin
+task : compilePicassoDebugAndroidTestKotlin
+task : compilePicassoDebugUnitTestKotlin
+task : compilePicassoDebugKotlin
+task : compilePicassoReleaseUnitTestKotlin
+task : compilePicassoReleaseKotlin
+task : assembleDebug
+task : bundleDebug
+task : assembleRelease
+task : bundleRelease
+task : assembleGlide
+task : bundleGlide
+task : assemblePicasso
+task : bundlePicasso
+task : bundle
+task : kaptGenerateStubsGlideDebugKotlin
+task : kaptGlideDebugKotlin
+task : kaptGenerateStubsGlideReleaseKotlin
+task : kaptGlideReleaseKotlin
+task : kaptGenerateStubsPicassoDebugKotlin
+task : kaptPicassoDebugKotlin
+task : kaptGenerateStubsPicassoReleaseKotlin
+task : kaptPicassoReleaseKotlin
+task : kaptGenerateStubsGlideDebugAndroidTestKotlin
+task : kaptGlideDebugAndroidTestKotlin
+task : kaptGenerateStubsPicassoDebugAndroidTestKotlin
+task : kaptPicassoDebugAndroidTestKotlin
+task : kaptGenerateStubsGlideDebugUnitTestKotlin
+task : kaptGlideDebugUnitTestKotlin
+task : kaptGenerateStubsGlideReleaseUnitTestKotlin
+task : kaptGlideReleaseUnitTestKotlin
+task : kaptGenerateStubsPicassoDebugUnitTestKotlin
+task : kaptPicassoDebugUnitTestKotlin
+task : kaptGenerateStubsPicassoReleaseUnitTestKotlin
+task : kaptPicassoReleaseUnitTestKotlin
+
+> Configure project :lib_core
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+
+> Configure project :lib_core_api
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+
+> Configure project :lib_core_util
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+
+> Configure project :lib_database
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+
+> Configure project :lib_ffmpeg
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+
+> Configure project :lib_glide
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+
+> Configure project :lib_okhttp
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+
+> Configure project :lib_picasso
+WARNING: The following project options are deprecated and have been removed:
+android.databinding.enableV2
+Databinding v1 is removed.
+
+
+ABIs [arm64-v8a,armeabi-v7a,armeabi] set by 'android.injected.build.abi' gradle flag contained 'ARMEABI, ARM64_V8A' not targeted by this project.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preGlideDebugBuild UP-TO-DATE
+> Task :lib_core:preBuild UP-TO-DATE
+> Task :lib_core:preGlideDebugBuild UP-TO-DATE
+> Task :lib_glide:preBuild UP-TO-DATE
+> Task :lib_glide:preDebugBuild UP-TO-DATE
+> Task :lib_database:preBuild UP-TO-DATE
+> Task :lib_database:preDebugBuild UP-TO-DATE
+> Task :lib_ffmpeg:preBuild UP-TO-DATE
+> Task :lib_ffmpeg:preGlideDebugBuild UP-TO-DATE
+> Task :lib_okhttp:preBuild UP-TO-DATE
+> Task :lib_okhttp:preDebugBuild UP-TO-DATE
+> Task :lib_core:packageGlideDebugRenderscript NO-SOURCE
+> Task :lib_database:packageDebugRenderscript NO-SOURCE
+> Task :lib_ffmpeg:packageGlideDebugRenderscript NO-SOURCE
+> Task :lib_okhttp:packageDebugRenderscript NO-SOURCE
+> Task :app:checkGlideDebugManifest
+> Task :app:generateGlideDebugBuildConfig
+> Task :app:prepareLintJar UP-TO-DATE
+> Task :app:prepareLintJarForPublish UP-TO-DATE
+> Task :app:compileGlideDebugRenderscript NO-SOURCE
+> Task :lib_glide:compileDebugAidl NO-SOURCE
+> Task :lib_core:compileGlideDebugAidl NO-SOURCE
+> Task :lib_database:compileDebugAidl NO-SOURCE
+> Task :lib_ffmpeg:compileGlideDebugAidl NO-SOURCE
+> Task :lib_okhttp:compileDebugAidl NO-SOURCE
+> Task :app:compileGlideDebugAidl NO-SOURCE
+> Task :app:generateGlideDebugSources
+> Task :app:dataBindingExportBuildInfoGlideDebug
+> Task :app:dataBindingMergeDependencyArtifactsGlideDebug
+> Task :app:generateGlideDebugResValues
+> Task :app:generateGlideDebugResources
+> Task :app:dataBindingMergeGenClassesGlideDebug
+> Task :lib_glide:packageDebugRenderscript NO-SOURCE
+> Task :lib_core:compileGlideDebugRenderscript NO-SOURCE
+> Task :lib_core:generateGlideDebugResValues
+> Task :lib_core:generateGlideDebugResources
+> Task :lib_core:packageGlideDebugResources
+> Task :lib_database:generateDebugResValues
+> Task :lib_database:compileDebugRenderscript NO-SOURCE
+> Task :lib_database:generateDebugResources
+> Task :lib_database:packageDebugResources
+> Task :lib_ffmpeg:generateGlideDebugResValues
+> Task :lib_ffmpeg:compileGlideDebugRenderscript NO-SOURCE
+> Task :lib_ffmpeg:generateGlideDebugResources
+> Task :lib_ffmpeg:packageGlideDebugResources
+> Task :lib_glide:generateDebugResValues
+> Task :lib_glide:compileDebugRenderscript NO-SOURCE
+> Task :lib_glide:generateDebugResources
+> Task :lib_glide:packageDebugResources
+> Task :lib_okhttp:generateDebugResValues
+> Task :lib_okhttp:compileDebugRenderscript NO-SOURCE
+> Task :lib_okhttp:generateDebugResources
+> Task :lib_okhttp:packageDebugResources
+> Task :app:dataBindingExportFeaturePackageIdsGlideDebug
+> Task :app:mainApkListPersistenceGlideDebug
+> Task :app:createGlideDebugCompatibleScreenManifests
+> Task :lib_core:checkGlideDebugManifest
+> Task :lib_database:checkDebugManifest
+> Task :lib_ffmpeg:checkGlideDebugManifest
+> Task :lib_glide:checkDebugManifest
+> Task :lib_core:processGlideDebugManifest
+> Task :lib_okhttp:checkDebugManifest
+> Task :lib_ffmpeg:processGlideDebugManifest
+> Task :lib_glide:processDebugManifest
+> Task :lib_database:processDebugManifest
+> Task :app:mergeGlideDebugResources
+> Task :app:dataBindingGenBaseClassesGlideDebug
+> Task :lib_okhttp:processDebugManifest
+> Task :app:processGlideDebugManifest
+> Task :lib_core:parseGlideDebugLibraryResources
+> Task :lib_glide:parseDebugLibraryResources
+> Task :lib_database:parseDebugLibraryResources
+> Task :lib_ffmpeg:parseGlideDebugLibraryResources
+> Task :lib_okhttp:parseDebugLibraryResources
+> Task :lib_core:generateGlideDebugBuildConfig
+> Task :lib_glide:generateDebugRFile
+> Task :lib_database:generateDebugRFile
+> Task :lib_glide:generateDebugBuildConfig
+> Task :lib_database:generateDebugBuildConfig
+> Task :lib_glide:kaptGenerateStubsDebugKotlin
+> Task :lib_core:generateGlideDebugRFile
+> Task :lib_ffmpeg:generateGlideDebugRFile
+> Task :lib_okhttp:generateDebugRFile
+> Task :app:processGlideDebugResources
+
+> Task :lib_glide:kaptDebugKotlin
+注: [1] Wrote GeneratedAppGlideModule with: [com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule]
+> Task :lib_glide:compileDebugKotlin
+> Task :lib_ffmpeg:generateGlideDebugBuildConfig
+> Task :lib_database:kaptGenerateStubsDebugKotlin
+> Task :lib_glide:javaPreCompileDebug
+> Task :lib_glide:compileDebugJavaWithJavac
+> Task :lib_ffmpeg:kaptGenerateStubsGlideDebugKotlin
+> Task :lib_ffmpeg:kaptGlideDebugKotlin
+> Task :lib_ffmpeg:compileGlideDebugKotlin
+> Task :lib_glide:bundleLibCompileDebug
+> Task :lib_core:kaptGenerateStubsGlideDebugKotlin
+> Task :lib_core:kaptGlideDebugKotlin
+
+> Task :lib_core:compileGlideDebugKotlin
+w: /Users/breeze/StudioProjects/study/lib_core/src/main/java/com/study/lib/image/ImageUtil.kt: (6, 22): Parameter 'url' is never used
+w: /Users/breeze/StudioProjects/study/lib_core/src/main/java/com/study/lib/image/ImageUtil.kt: (6, 35): Parameter 'view' is never used
+w: /Users/breeze/StudioProjects/study/lib_core/src/main/java/com/study/lib/util/NetworkUtil.kt: (17, 42): Unnecessary safe call on a non-null receiver of type ConnectivityManager
+w: /Users/breeze/StudioProjects/study/lib_core/src/main/java/com/study/lib/util/NetworkUtil.kt: (17, 44): 'getter for activeNetworkInfo: NetworkInfo!' is deprecated. Deprecated in Java
+w: /Users/breeze/StudioProjects/study/lib_core/src/main/java/com/study/lib/util/NetworkUtil.kt: (18, 57): 'getter for isAvailable: Boolean' is deprecated. Deprecated in Java
+
+> Task :lib_ffmpeg:javaPreCompileGlideDebug
+> Task :lib_ffmpeg:compileGlideDebugJavaWithJavac
+> Task :lib_core:javaPreCompileGlideDebug
+
+> Task :lib_core:compileGlideDebugJavaWithJavac
+注: /Users/breeze/StudioProjects/study/lib_core/src/main/java/com/study/lib/util/ClassFileParse.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+> Task :lib_ffmpeg:bundleLibCompileGlideDebug
+> Task :lib_okhttp:generateDebugBuildConfig
+> Task :lib_okhttp:kaptGenerateStubsDebugKotlin
+
+> Task :lib_database:kaptDebugKotlin
+警告: Current JDK version 1.8.0_271-b09 has a bug (https://bugs.openjdk.java.net/browse/JDK-8007720) that prevents Room from being incremental. Consider using JDK 11+ or the embedded JDK shipped with Android Studio 3.5+.
+> Task :lib_okhttp:kaptDebugKotlin
+
+> Task :lib_okhttp:compileDebugKotlin
+w: /Users/breeze/StudioProjects/study/lib_okhttp/src/main/java/com/study/lib/api/base/NetworkBase.kt: (71, 69): Unchecked cast: Any! to T
+w: /Users/breeze/StudioProjects/study/lib_okhttp/src/main/java/com/study/lib/api/base/NetworkBase.kt: (88, 48): No cast needed
+
+> Task :lib_database:kaptDebugKotlin
+[WARN] Incremental annotation processing requested, but support is disabled because the following processors are not incremental: androidx.room.RoomProcessor (DYNAMIC).
+
+> Task :lib_database:compileDebugKotlin
+> Task :lib_okhttp:javaPreCompileDebug
+> Task :lib_okhttp:compileDebugJavaWithJavac
+> Task :lib_core:bundleLibCompileGlideDebug
+> Task :lib_database:javaPreCompileDebug
+> Task :lib_database:compileDebugJavaWithJavac
+> Task :lib_okhttp:bundleLibCompileDebug
+> Task :lib_database:bundleLibCompileDebug
+> Task :app:kaptGenerateStubsGlideDebugKotlin
+> Task :app:checkGlideDebugDuplicateClasses
+> Task :lib_ffmpeg:bundleLibRuntimeGlideDebug
+> Task :lib_database:bundleLibRuntimeDebug
+> Task :lib_core:bundleLibRuntimeGlideDebug
+> Task :lib_glide:bundleLibRuntimeDebug
+> Task :app:mergeGlideDebugShaders
+> Task :app:compileGlideDebugShaders
+> Task :app:generateGlideDebugAssets
+> Task :lib_core:mergeGlideDebugShaders
+> Task :lib_core:compileGlideDebugShaders
+> Task :lib_core:generateGlideDebugAssets
+> Task :lib_core:packageGlideDebugAssets
+> Task :lib_database:mergeDebugShaders
+> Task :lib_database:compileDebugShaders
+> Task :lib_database:generateDebugAssets
+> Task :lib_database:packageDebugAssets
+> Task :lib_ffmpeg:mergeGlideDebugShaders
+> Task :lib_ffmpeg:compileGlideDebugShaders
+> Task :lib_ffmpeg:generateGlideDebugAssets
+> Task :lib_ffmpeg:packageGlideDebugAssets
+> Task :lib_glide:mergeDebugShaders
+> Task :lib_glide:compileDebugShaders
+> Task :lib_glide:generateDebugAssets
+> Task :lib_glide:packageDebugAssets
+> Task :lib_okhttp:mergeDebugShaders
+> Task :lib_okhttp:compileDebugShaders
+> Task :lib_okhttp:generateDebugAssets
+> Task :lib_okhttp:packageDebugAssets
+> Task :app:mergeGlideDebugAssets
+> Task :lib_okhttp:bundleLibRuntimeDebug
+> Task :app:processGlideDebugJavaRes NO-SOURCE
+> Task :lib_core:processGlideDebugJavaRes NO-SOURCE
+> Task :lib_database:processDebugJavaRes NO-SOURCE
+> Task :lib_ffmpeg:processGlideDebugJavaRes NO-SOURCE
+> Task :lib_glide:processDebugJavaRes NO-SOURCE
+> Task :lib_okhttp:processDebugJavaRes NO-SOURCE
+> Task :lib_core:bundleLibResGlideDebug
+> Task :app:validateSigningGlideDebug
+> Task :app:signingConfigWriterGlideDebug
+> Task :lib_okhttp:bundleLibResDebug
+> Task :lib_ffmpeg:bundleLibResGlideDebug
+> Task :lib_database:bundleLibResDebug
+> Task :lib_glide:bundleLibResDebug
+> Task :app:mergeGlideDebugJniLibFolders
+> Task :lib_core:mergeGlideDebugJniLibFolders
+> Task :lib_database:mergeDebugJniLibFolders
+> Task :lib_core:mergeGlideDebugNativeLibs
+> Task :lib_core:stripGlideDebugDebugSymbols
+> Task :lib_core:transformNativeLibsWithIntermediateJniLibsForGlideDebug
+> Task :lib_database:mergeDebugNativeLibs
+> Task :lib_database:stripDebugDebugSymbols
+> Task :lib_database:transformNativeLibsWithIntermediateJniLibsForDebug
+> Task :lib_ffmpeg:generateJsonModelGlideDebug UP-TO-DATE
+
+> Task :lib_ffmpeg:externalNativeBuildGlideDebug
+Build native_lib_armeabi-v7a
+[1/2] Building CXX object CMakeFiles/native_lib.dir/src/main/jni/native_lib.cpp.o
+[2/2] Linking CXX shared library ../../../../build/intermediates/cmake/glideDebug/obj/armeabi-v7a/libnative_lib.so
+
+> Task :lib_ffmpeg:mergeGlideDebugJniLibFolders
+> Task :lib_glide:mergeDebugJniLibFolders
+> Task :lib_okhttp:mergeDebugJniLibFolders
+> Task :lib_glide:mergeDebugNativeLibs
+> Task :lib_glide:stripDebugDebugSymbols
+> Task :lib_glide:transformNativeLibsWithIntermediateJniLibsForDebug
+> Task :lib_okhttp:mergeDebugNativeLibs
+> Task :lib_okhttp:stripDebugDebugSymbols
+> Task :lib_okhttp:transformNativeLibsWithIntermediateJniLibsForDebug
+> Task :lib_ffmpeg:mergeGlideDebugNativeLibs
+> Task :lib_ffmpeg:stripGlideDebugDebugSymbols
+> Task :lib_ffmpeg:transformNativeLibsWithIntermediateJniLibsForGlideDebug
+
+> Task :app:kaptGlideDebugKotlin
+/Users/breeze/StudioProjects/study/app/build/tmp/kapt3/stubs/glideDebug/com/study/doc/test/BindingAdapterUtil.java:10: 警告: Application namespace for attribute app:imageUrl will be ignored.
+    public static final void imageUrl(@org.jetbrains.annotations.NotNull()
+                             ^[WARN] Incremental annotation processing requested, but support is disabled because the following processors are not incremental: android.databinding.annotationprocessor.ProcessDataBinding (DYNAMIC).
+
+> Task :app:compileGlideDebugKotlin
+w: /Users/breeze/StudioProjects/study/app/src/main/java/com/study/doc/test/MainActivity.kt: (122, 21): Variable 'permissions' is never used
+w: /Users/breeze/StudioProjects/study/app/src/main/java/com/study/doc/test/MainActivity.kt: (192, 25): Type mismatch: inferred type is String? but String was expected
+w: /Users/breeze/StudioProjects/study/app/src/main/java/com/study/doc/test/Test.kt: (24, 14): Parameter 'context' is never used
+
+> Task :app:mergeGlideDebugNativeLibs
+> Task :app:stripGlideDebugDebugSymbols
+> Task :app:javaPreCompileGlideDebug
+> Task :app:compileGlideDebugJavaWithJavac
+> Task :app:compileGlideDebugSources
+
+> Task :app:transformClassesWithAnnotationPluginForGlideDebug
+target field clsName com.study.lib.util.TestB
+target method clsName com.study.lib.image.ImageUtil
+target method clsName android.view.View$OnClickListener
+targetMap : [com.study.lib.util.TestB:true, com/study/lib/util/TestInsertUtil.class:true, com.study.lib.image.ImageUtil:true, com/third/image/glide/GlideUtil.class:true, android.view.View$OnClickListener:true, /Users/breeze/StudioProjects/study/app/build/intermediates/javac/glideDebug/classes/com/study/doc/test/ViewClickUtil.class:true]
+checkInsertCode name : com.study.lib.util.TestB
+equals --- [:]
+finalize --- [:]
+toString --- [:]
+testB --- [:]
+testField --- [:]
+getClass --- [:]
+notifyAll --- [:]
+hashCode --- [:]
+wait --- [:]
+notify --- [:]
+testCode --- [:]
+wait --- [:]
+test --- [:]
+wait --- [:]
+showCount --- [:]
+clone --- [:]
+checkInsertCode name : com.study.lib.image.ImageUtil
+equals --- [:]
+finalize --- [:]
+notify --- [:]
+toString --- [:]
+displayImage --- [:]
+wait --- [:]
+wait --- [:]
+getClass --- [:]
+clone --- [:]
+notifyAll --- [:]
+hashCode --- [:]
+wait --- [:]
+checkInsertCode name : com.study.lib.util.TestInsertUtil
+field annotation : com.study.lib.util.TestInsertUtil.TAG:Ljava/lang/String;
+equals --- [:]
+finalize --- [:]
+toString --- [:]
+testB --- [:]
+getClass --- [:]
+notifyAll --- [:]
+testKotlin --- [:]
+hashCode --- [:]
+wait --- [:]
+notify --- [:]
+testCode --- [:]
+testKotlinReplace --- [:]
+wait --- [:]
+test --- [:]
+wait --- [:]
+clone --- [:]
+checkInsertCode name : com.third.image.glide.GlideUtil
+equals --- [:]
+finalize --- [:]
+notify --- [:]
+toString --- [:]
+method annotation : javassist.CtMethod@3afe60f6[public final displayImage (Ljava/lang/String;Landroid/widget/ImageView;)V], targetClassName : com.study.lib.image.ImageUtil, target : javassist.CtClassType@4209bda9[changed public final class com.study.lib.image.ImageUtil fields=com.study.lib.image.ImageUtil.INSTANCE:Lcom/study/lib/image/ImageUtil;,  constructors=javassist.CtConstructor@3f95dd6a[private ImageUtil ()V], javassist.CtConstructor@75edb91a[static <clinit> ()V],  methods=javassist.CtMethod@3afe60f6[public final displayImage (Ljava/lang/String;Landroid/widget/ImageView;)V], ]
+wait --- [:]
+wait --- [:]
+getClass --- [:]
+clone --- [:]
+notifyAll --- [:]
+hashCode --- [:]
+wait --- [:]
+interface android.view.View$OnClickListener [com.study.lib.util.TestB:true, com/study/lib/util/TestInsertUtil.class:true, com.study.lib.image.ImageUtil:true, com/third/image/glide/GlideUtil.class:true, android.view.View$OnClickListener:true, /Users/breeze/StudioProjects/study/app/build/intermediates/javac/glideDebug/classes/com/study/doc/test/ViewClickUtil.class:true]
+interface found javassist.CtClassType@57ffd78b[public abstract static interface class android.view.View$OnClickListener fields= constructors= methods=javassist.CtMethod@c30850f0[public abstract onClick (Landroid/view/View;)V], ]
+checkInsertCode name : com.study.doc.test.MainActivity$onCreate$1
+equals --- [:]
+finalize --- [:]
+notify --- [:]
+toString --- [:]
+onClick --- [:]
+wait --- [:]
+wait --- [:]
+getClass --- [:]
+clone --- [:]
+notifyAll --- [:]
+hashCode --- [:]
+wait --- [:]
+interface com.study.lib.api.base.ResponseListener [com.study.lib.util.TestB:true, com/study/lib/util/TestInsertUtil.class:true, com.study.lib.image.ImageUtil:true, com/third/image/glide/GlideUtil.class:true, android.view.View$OnClickListener:true, /Users/breeze/StudioProjects/study/app/build/intermediates/javac/glideDebug/classes/com/study/doc/test/ViewClickUtil.class:true]
+interface io.reactivex.functions.Consumer [com.study.lib.util.TestB:true, com/study/lib/util/TestInsertUtil.class:true, com.study.lib.image.ImageUtil:true, com/third/image/glide/GlideUtil.class:true, android.view.View$OnClickListener:true, /Users/breeze/StudioProjects/study/app/build/intermediates/javac/glideDebug/classes/com/study/doc/test/ViewClickUtil.class:true]
+collect map[com.study.lib.util.TestB] = [com.lib.annotation.gradle.plugin.InsertInfo@6ac611ea]
+collect map[com.study.lib.image.ImageUtil] = [com.lib.annotation.gradle.plugin.InsertInfo@49a1a135]
+handleDirectoryInput found name : TestAsm.class
+LifecycleClassVisitor : visit -----> started : com/study/doc/test/TestAsm
+LifecycleClassVisitor : visitMethod : <init>
+LifecycleClassVisitor : visitMethod : test
+visitCode name : test
+LifecycleClassVisitor : visitMethod : showLog
+LifecycleClassVisitor : visitMethod : testStaticModify
+LifecycleClassVisitor : visitMethod : <clinit>
+visitCode name : <clinit>
+LifecycleClassVisitor : visit -----> end
+injectInsertInfo key : com.study.lib.util.TestB
+fields : [com.study.lib.util.TestB.TAG:Ljava/lang/String;, com.study.lib.util.TestB.TAG2:Ljava/lang/String;, com.study.lib.util.TestB.COUNT:I], methods : [javassist.CtMethod@87a44f24[public equals (Ljava/lang/Object;)Z], javassist.CtMethod@919e519f[protected finalize ()V], javassist.CtMethod@69cb6c6d[public toString ()Ljava/lang/String;], javassist.CtMethod@ab3696f1[public testB ()V], javassist.CtMethod@b543ba89[public testField ()V], javassist.CtMethod@70ae6c43[public final native getClass ()Ljava/lang/Class;], javassist.CtMethod@96773899[public final native notifyAll ()V], javassist.CtMethod@c13165c[public native hashCode ()I], javassist.CtMethod@d0990d36[public final wait ()V], javassist.CtMethod@5e7eee0a[public final native notify ()V], javassist.CtMethod@4140bd56[public static testCode (Ljava/lang/String;)V], javassist.CtMethod@42889db2[public final native wait (J)V], javassist.CtMethod@c0333cc9[public test (Ljava/lang/String;)V], javassist.CtMethod@e8b1c97[public final wait (JI)V], javassist.CtMethod@b70a71d6[public showCount (I)V], javassist.CtMethod@33a3ff1e[protected native clone ()Ljava/lang/Object;]]
+com.lib.annotation.gradle.plugin.InsertInfo@6ac611ea
+find replace field : TAG, src TAG
+TAG, TestJava, Ljava/lang/String;
+constantValue : TestJava, Ljava/lang/String;
+injectInsertInfo key : com.study.lib.image.ImageUtil
+fields : [com.study.lib.image.ImageUtil.INSTANCE:Lcom/study/lib/image/ImageUtil;], methods : [javassist.CtMethod@87a44f24[public equals (Ljava/lang/Object;)Z], javassist.CtMethod@919e519f[protected finalize ()V], javassist.CtMethod@5e7eee0a[public final native notify ()V], javassist.CtMethod@69cb6c6d[public toString ()Ljava/lang/String;], javassist.CtMethod@3afe60f6[public final displayImage (Ljava/lang/String;Landroid/widget/ImageView;)V], javassist.CtMethod@42889db2[public final native wait (J)V], javassist.CtMethod@e8b1c97[public final wait (JI)V], javassist.CtMethod@70ae6c43[public final native getClass ()Ljava/lang/Class;], javassist.CtMethod@33a3ff1e[protected native clone ()Ljava/lang/Object;], javassist.CtMethod@96773899[public final native notifyAll ()V], javassist.CtMethod@c13165c[public native hashCode ()I], javassist.CtMethod@d0990d36[public final wait ()V]]
+com.lib.annotation.gradle.plugin.InsertInfo@49a1a135
+clsName : com.study.lib.image.ImageUtil, targetClass: javassist.CtClassType@2060734a[public final class com.study.lib.image.ImageUtil fields=com.study.lib.image.ImageUtil.INSTANCE:Lcom/study/lib/image/ImageUtil;,  constructors=javassist.CtConstructor@712b1ff7[private ImageUtil ()V], javassist.CtConstructor@62c2078f[static <clinit> ()V],  methods=javassist.CtMethod@3afe60f6[public final displayImage (Ljava/lang/String;Landroid/widget/ImageView;)V], ], srcClsName : com.third.image.glide.GlideUtil
+name : equals
+name : finalize
+name : notify
+name : toString
+name : displayImage
+item.isInterface : false
+getSourceTextByByteCode
+utf8[1] : com/third/image/glide/GlideUtil
+class[2] : com.third.image.glide.GlideUtil
+utf8[3] : java/lang/Object
+class[4] : java.lang.Object
+utf8[5] : TAG
+utf8[6] : Ljava/lang/String;
+utf8[7] : displayImage
+utf8[8] : (Ljava/lang/String;Landroid/widget/ImageView;)V
+utf8[9] : Lcom/lib/annotation/Insert;
+utf8[10] : classPath
+utf8[11] : com.study.lib.image.ImageUtil
+utf8[12] : name
+utf8[13] : replace
+int[14] : 1
+utf8[15] : Lorg/jetbrains/annotations/NotNull;
+utf8[16] : url
+string[17] : url
+utf8[18] : kotlin/jvm/internal/Intrinsics
+class[19] : kotlin.jvm.internal.Intrinsics
+utf8[20] : checkParameterIsNotNull
+utf8[21] : (Ljava/lang/Object;Ljava/lang/String;)V
+nameAndType[22] : 20
+methodref[23] : checkParameterIsNotNull, kotlin.jvm.internal.Intrinsics
+utf8[24] : view
+string[25] : view
+utf8[26] : GlideUtil
+string[27] : GlideUtil
+utf8[28] : displayImage use Glide!!!
+string[29] : displayImage use Glide!!!
+utf8[30] : android/util/Log
+class[31] : android.util.Log
+utf8[32] : i
+utf8[33] : (Ljava/lang/String;Ljava/lang/String;)I
+nameAndType[34] : 32
+methodref[35] : i, android.util.Log
+utf8[36] : android/widget/ImageView
+class[37] : android.widget.ImageView
+utf8[38] : getContext
+utf8[39] : ()Landroid/content/Context;
+nameAndType[40] : 38
+methodref[41] : getContext, android.widget.ImageView
+utf8[42] : com/bumptech/glide/Glide
+class[43] : com.bumptech.glide.Glide
+utf8[44] : with
+utf8[45] : (Landroid/content/Context;)Lcom/bumptech/glide/RequestManager;
+nameAndType[46] : 44
+methodref[47] : with, com.bumptech.glide.Glide
+utf8[48] : com/bumptech/glide/RequestManager
+class[49] : com.bumptech.glide.RequestManager
+utf8[50] : asBitmap
+utf8[51] : ()Lcom/bumptech/glide/RequestBuilder;
+nameAndType[52] : 50
+methodref[53] : asBitmap, com.bumptech.glide.RequestManager
+utf8[54] : android/net/Uri
+class[55] : android.net.Uri
+utf8[56] : parse
+utf8[57] : (Ljava/lang/String;)Landroid/net/Uri;
+nameAndType[58] : 56
+methodref[59] : parse, android.net.Uri
+utf8[60] : com/bumptech/glide/RequestBuilder
+class[61] : com.bumptech.glide.RequestBuilder
+utf8[62] : load
+utf8[63] : (Landroid/net/Uri;)Lcom/bumptech/glide/RequestBuilder;
+nameAndType[64] : 62
+methodref[65] : load, com.bumptech.glide.RequestBuilder
+utf8[66] : override
+utf8[67] : (II)Lcom/bumptech/glide/request/BaseRequestOptions;
+nameAndType[68] : 66
+methodref[69] : override, com.bumptech.glide.RequestBuilder
+utf8[70] : fitCenter
+utf8[71] : ()Lcom/bumptech/glide/request/BaseRequestOptions;
+nameAndType[72] : 70
+methodref[73] : fitCenter, com.bumptech.glide.RequestBuilder
+utf8[74] : com/third/image/glide/ImageTransformUtil
+class[75] : com.third.image.glide.ImageTransformUtil
+utf8[76] : <init>
+utf8[77] : (Landroid/widget/ImageView;)V
+nameAndType[78] : 76
+methodref[79] : <init>, com.third.image.glide.ImageTransformUtil
+utf8[80] : com/bumptech/glide/request/target/Target
+class[81] : com.bumptech.glide.request.target.Target
+utf8[82] : into
+utf8[83] : (Lcom/bumptech/glide/request/target/Target;)Lcom/bumptech/glide/request/target/Target;
+nameAndType[84] : 82
+methodref[85] : into, com.bumptech.glide.RequestBuilder
+utf8[86] : this
+utf8[87] : Lcom/third/image/glide/GlideUtil;
+utf8[88] : Landroid/widget/ImageView;
+utf8[89] : ()V
+nameAndType[90] : 76
+methodref[91] : <init>, java.lang.Object
+utf8[92] : INSTANCE
+utf8[93] : <clinit>
+utf8[94] : Lkotlin/Metadata;
+utf8[95] : mv
+int[96] : 16
+utf8[97] : bv
+int[98] : 0
+int[99] : 3
+utf8[100] : k
+utf8[101] : d1
+utf8[102] :  
+
+ 
+
+
+ 
+
+
+
+Æ 20B¢J02020	HR0X¢
+ ¨
+
+utf8[103] : d2
+utf8[104] :
+utf8[105] : lib_glide_debug
+methodref[106] : <init>, com.third.image.glide.GlideUtil
+nameAndType[107] : 92
+field[108] : INSTANCE
+utf8[109] : java/lang/Class
+class[110] : java.lang.Class
+utf8[111] : getSimpleName
+utf8[112] : ()Ljava/lang/String;
+nameAndType[113] : 111
+methodref[114] : getSimpleName, java.lang.Class
+utf8[115] : GlideUtil::class.java.simpleName
+string[116] : GlideUtil::class.java.simpleName
+utf8[117] : checkExpressionValueIsNotNull
+nameAndType[118] : 117
+methodref[119] : checkExpressionValueIsNotNull, kotlin.jvm.internal.Intrinsics
+nameAndType[120] : 5
+field[121] : TAG
+utf8[122] : GlideUtil.kt
+utf8[123] : Code
+utf8[124] : LineNumberTable
+utf8[125] : LocalVariableTable
+utf8[126] : RuntimeVisibleAnnotations
+utf8[127] : RuntimeInvisibleParameterAnnotations
+utf8[128] : SourceFile
+method : displayImage, bytes : [43, 18, 17, -72, 0, 23, 44, 18, 25, -72, 0, 23, 18, 27, 18, 29, -72, 0, 35, 87, 44, -74, 0, 41, -72, 0, 47, -74, 0, 53, 43, -72, 0, 59, -74, 0, 65, 17, 2, -128, 17, 1, 104, -74, 0, 69, -64, 0, 61, -74, 0, 73, -64, 0, 61, -69, 0, 75, 89, 44, -73, 0, 79, -64, 0, 81, -74, 0, 85, 87, -79], size :129, attrs : 3
+attribute LineNumberTable : javassist.bytecode.LineNumberAttribute@735a4350, table len : 18
+start : 12, lineNumber : 17
+start : 20, lineNumber : 18
+start : 20, lineNumber : 23
+start : 20, lineNumber : 18
+start : 20, lineNumber : 22
+start : 20, lineNumber : 18
+start : 20, lineNumber : 21
+start : 20, lineNumber : 18
+start : 20, lineNumber : 20
+start : 20, lineNumber : 18
+start : 20, lineNumber : 19
+start : 20, lineNumber : 18
+start : 27, lineNumber : 19
+start : 30, lineNumber : 20
+start : 37, lineNumber : 21
+start : 49, lineNumber : 22
+start : 55, lineNumber : 23
+start : 70, lineNumber : 24
+attribute LocalVariableTable : javassist.bytecode.LocalVariableAttribute@5a272e6b
+index = 0, op = 43, str : aload_1
+index = 1, op = 18, str : ldc
+cpIndex : 17
+index = 3, op = 184, str : invokestatic
+cpIndex : 23, useLocalVariable : true, isInstance : false
+clsName : kotlin.jvm.internal.Intrinsics, type : (Ljava/lang/Object;Ljava/lang/String;)V, param : (Ljava/lang/Object;Ljava/lang/String;, last : , lastCls :
+index = 6, op = 44, str : aload_2
+index = 7, op = 18, str : ldc
+cpIndex : 25
+index = 9, op = 184, str : invokestatic
+cpIndex : 23, useLocalVariable : true, isInstance : false
+clsName : kotlin.jvm.internal.Intrinsics, type : (Ljava/lang/Object;Ljava/lang/String;)V, param : (Ljava/lang/Object;Ljava/lang/String;, last : V, lastCls :
+lineSource :
+index = 12, op = 18, str : ldc
+cpIndex : 27
+index = 14, op = 18, str : ldc
+cpIndex : 29
+index = 16, op = 184, str : invokestatic
+cpIndex : 35, useLocalVariable : false, isInstance : false
+clsName : android.util.Log, type : (Ljava/lang/String;Ljava/lang/String;)I, param : (Ljava/lang/String;Ljava/lang/String;, last : , lastCls :
+index = 19, op = 87, str : pop
+lineSource : android.util.Log.i("GlideUtil", "displayImage use Glide!!!")
+index = 20, op = 44, str : aload_2
+index = 21, op = 182, str : invokevirtual
+cpIndex : 41, useLocalVariable : true, isInstance : true
+clsName : android.widget.ImageView, type : ()Landroid/content/Context;, param : (, last : , lastCls :
+source as arg : $2.getContext()
+index = 24, op = 184, str : invokestatic
+cpIndex : 47, useLocalVariable : false, isInstance : false
+clsName : com.bumptech.glide.Glide, type : (Landroid/content/Context;)Lcom/bumptech/glide/RequestManager;, param : (Landroid/content/Context;, last : Landroid/content/Context;, lastCls : android.content.Context
+index = 27, op = 182, str : invokevirtual
+cpIndex : 53, useLocalVariable : false, isInstance : true
+clsName : com.bumptech.glide.RequestManager, type : ()Lcom/bumptech/glide/RequestBuilder;, param : (, last : Lcom/bumptech/glide/RequestManager;, lastCls : com.bumptech.glide.RequestManager
+index = 30, op = 43, str : aload_1
+index = 31, op = 184, str : invokestatic
+cpIndex : 59, useLocalVariable : true, isInstance : false
+clsName : android.net.Uri, type : (Ljava/lang/String;)Landroid/net/Uri;, param : (Ljava/lang/String;, last : Lcom/bumptech/glide/RequestBuilder;, lastCls : com.bumptech.glide.RequestBuilder
+source as arg : android.net.Uri.parse($1)
+index = 34, op = 182, str : invokevirtual
+cpIndex : 65, useLocalVariable : false, isInstance : true
+clsName : com.bumptech.glide.RequestBuilder, type : (Landroid/net/Uri;)Lcom/bumptech/glide/RequestBuilder;, param : (Landroid/net/Uri;, last : Landroid/net/Uri;, lastCls : android.net.Uri
+index = 37, op = 17, str : sipush
+value : 640, high : 512, low : 128
+index = 40, op = 17, str : sipush
+value : 360, high : 256, low : 104
+index = 43, op = 182, str : invokevirtual
+cpIndex : 69, useLocalVariable : false, isInstance : true
+clsName : com.bumptech.glide.RequestBuilder, type : (II)Lcom/bumptech/glide/request/BaseRequestOptions;, param : (II, last : Lcom/bumptech/glide/RequestBuilder;, lastCls : com.bumptech.glide.RequestBuilder
+index = 46, op = 192, str : checkcast
+cpIndex : 61
+index = 49, op = 182, str : invokevirtual
+cpIndex : 73, useLocalVariable : false, isInstance : true
+clsName : com.bumptech.glide.RequestBuilder, type : ()Lcom/bumptech/glide/request/BaseRequestOptions;, param : (, last : Lcom/bumptech/glide/request/BaseRequestOptions;, lastCls : com.bumptech.glide.request.BaseRequestOptions
+index = 52, op = 192, str : checkcast
+cpIndex : 61
+index = 55, op = 187, str : new
+cpIndex : 75
+index = 58, op = 89, str : dup
+index = 59, op = 44, str : aload_2
+index = 60, op = 183, str : invokespecial
+cpIndex : 79
+index = 63, op = 192, str : checkcast
+cpIndex : 81
+index = 66, op = 182, str : invokevirtual
+cpIndex : 85, useLocalVariable : true, isInstance : true
+clsName : com.bumptech.glide.RequestBuilder, type : (Lcom/bumptech/glide/request/target/Target;)Lcom/bumptech/glide/request/target/Target;, param : (Lcom/bumptech/glide/request/target/Target;, last : Lcom/bumptech/glide/request/BaseRequestOptions;, lastCls : com.bumptech.glide.request.BaseRequestOptions
+source as arg : .into()
+index = 69, op = 87, str : pop
+index = 70, op = 177, str : return
+sourceText :
+android.util.Log.i("GlideUtil", "displayImage use Glide!!!");
+((com.bumptech.glide.request.target.Target) ((com.bumptech.glide.RequestBuilder) ((com.bumptech.glide.RequestBuilder) com.bumptech.glide.Glide.with($2.getContext()).asBitmap().load(android.net.Uri.parse($1)).override(640, 360)).fitCenter())new com.third.image.glide.ImageTransformUtil($2));
+
+method : javassist.CtMethod@3afe60f6[public final displayImage (Ljava/lang/String;Landroid/widget/ImageView;)V], code : android.util.Log.i("GlideUtil", "displayImage use Glide!!!");
+((com.bumptech.glide.request.target.Target) ((com.bumptech.glide.RequestBuilder) ((com.bumptech.glide.RequestBuilder) com.bumptech.glide.Glide.with($2.getContext()).asBitmap().load(android.net.Uri.parse($1)).override(640, 360)).fitCenter())new com.third.image.glide.ImageTransformUtil($2));
+, modifyer : 17, com.study.lib.image.ImageUtil, true
+
+> Task :app:transformClassesWithAnnotationPluginForGlideDebug FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:transformClassesWithAnnotationPluginForGlideDebug'.
+> javassist.CannotCompileException: [source error] ) is missing
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 20s
+142 actionable tasks: 139 executed, 3 up-to-date

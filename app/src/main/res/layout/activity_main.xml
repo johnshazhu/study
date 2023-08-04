@@ -30,8 +30,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/hello"
                 app:imageUrl="@{test.imageUrl}"
                 android:contentDescription="@string/app_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="320dp"
+                android:layout_height="180dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

@@ -8,7 +8,7 @@ import com.intellij.psi.*
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.search.searches.AnnotatedElementsSearch
-import com.lib.annotation.Insert
+import com.lib.annotation.Inject
 import org.jetbrains.kotlin.asJava.classes.KtLightClassImpl
 import org.jetbrains.kotlin.asJava.elements.*
 import org.jetbrains.kotlin.idea.references.KtSimpleNameReference
@@ -204,7 +204,7 @@ class LineMarkerProviderKt : RelatedItemLineMarkerProvider() {
     }
 
     companion object {
-        private val INJECT_ANNOTATION_NAME = Insert::class.java.name
+        private val INJECT_ANNOTATION_NAME = Inject::class.java.name
         private const val INJECT_ANNOTATION_TARGET = "target"
         private const val INJECT_ANNOTATION_CLASSPATH = "classPath"
         private const val INJECT_ANNOTATION_TARGET_NAME = "name"

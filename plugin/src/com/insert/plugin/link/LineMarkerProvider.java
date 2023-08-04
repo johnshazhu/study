@@ -10,7 +10,7 @@ import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.ProjectScope;
 import com.intellij.psi.search.searches.AnnotatedElementsSearch;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.lib.annotation.Insert;
+import com.lib.annotation.Inject;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -19,7 +19,7 @@ import java.util.Collection;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LineMarkerProvider extends RelatedItemLineMarkerProvider {
-    private static final String INJECT_ANNOTATION_NAME = Insert.class.getName();
+    private static final String INJECT_ANNOTATION_NAME = Inject.class.getName();
     private static final String INJECT_ANNOTATION_TARGET = "target";
     private static final String INJECT_ANNOTATION_CLASSPATH = "classPath";
     private static final String INJECT_ANNOTATION_TARGET_NAME = "name";

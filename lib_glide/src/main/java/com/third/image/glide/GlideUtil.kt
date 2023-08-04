@@ -5,14 +5,19 @@ import android.util.Log
 import android.widget.ImageView
 
 import com.bumptech.glide.Glide
-import com.lib.annotation.Insert
+import com.lib.annotation.Inject
 
 object GlideUtil {
-    private val TAG = GlideUtil::class.java.simpleName
+//    private val TAG = GlideUtil::class.java.simpleName
 
-    //@Insert(classPath = "com.study.lib.image.ImageUtil", name = "displayImage", replace = true)
+    @Inject(classPath = "com.study.lib.image.ImageUtil", name = "displayImage", replace = true)
     fun displayImage(url: String, view: ImageView) {
         Log.i("GlideUtil", "displayImage use Glide!!!")
-        Glide.with(view.context).load(Uri.parse(url)).override(640, 360).fitCenter().into(view)
+        Glide.with(view.context)
+            .asBitmap()
+            .load(Uri.parse(url))
+            .override(640, 360)
+            .fitCenter()
+            .into(view)
     }
 }

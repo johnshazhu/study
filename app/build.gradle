@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'com.lib.annotation.gradle.plugin'
+apply plugin: 'io.github.johnshazhu.lib_annotation_transform'
 
 import com.lib.annotation.gradle.plugin.MainDexGenerator
 
@@ -71,7 +71,7 @@ android {
     sourceSets {
         main {
             manifest.srcFile "src/main/AndroidManifest.xml"
-            jniLibs.srcDirs = ["src/main/libs"]
+//            jniLibs.srcDirs = ["src/main/libs"]
             java.srcDirs = ["src/main/java"]
         }
     }
@@ -98,26 +98,26 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-tasks.whenTaskAdded { task ->
-    println "task : $task.name"
-    if (task.name.contains('transformDexArchiveWithDexMergerFor')) {
-        task.doFirst(new MainDexGenerator([
-                'io/reactivex/annotations',
-                'com/fasterxml',
-                'rx',
-                'org/jivesoftware',
-                'org/jetbrains/',
-                'org/intellij',
-                'android/support/v4',
-                'androidx',
-                'okio',
-                'javassist',
-                'com/google/gson',
-                'okhttp3'
-                //....and other you think could work
-        ]))
-    }
-}
+//tasks.whenTaskAdded { task ->
+//    println "task : $task.name"
+//    if (task.name.contains('transformDexArchiveWithDexMergerFor')) {
+//        task.doFirst(new MainDexGenerator([
+//                'io/reactivex/annotations',
+//                'com/fasterxml',
+//                'rx',
+//                'org/jivesoftware',
+//                'org/jetbrains/',
+//                'org/intellij',
+//                'android/support/v4',
+//                'androidx',
+//                'okio',
+//                'javassist',
+//                'com/google/gson',
+//                'okhttp3'
+//                //....and other you think could work
+//        ]))
+//    }
+//}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -136,13 +136,16 @@ dependencies {
     implementation project(':lib_core')
     implementation project(':lib_database')
     implementation project(':lib_okhttp')
-    implementation project(':lib_ffmpeg')
+//    implementation project(':lib_ffmpeg')
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "android.arch.persistence.room:rxjava2:$rxjava2_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.lib.annotation:lib_annotation:$lib_annotation_version"
+    implementation "io.github.johnshazhu:lib_annotation:$lib_annotation_version"
     implementation "org.javassist:javassist:$javassist_version"
+    testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
 //    implementation project(':flutter')
 }

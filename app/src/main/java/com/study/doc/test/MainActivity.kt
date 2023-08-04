@@ -24,7 +24,7 @@ import com.study.lib.util.TestA
 import com.study.lib.util.TestB
 import com.google.gson.Gson
 import com.study.doc.R
-import com.study.doc.third.FFmpegUtil
+//import com.study.doc.third.FFmpegUtil
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.Observer
@@ -38,6 +38,7 @@ class MainActivity : BaseActivity(), ResponseListener<APIBaseResponse<StartUpDat
     private val data = TestData()
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+    private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,9 @@ class MainActivity : BaseActivity(), ResponseListener<APIBaseResponse<StartUpDat
 
         val context = this
         binding.test = data
+        binding.hello.setOnClickListener {
+            binding.hello.text = "${data.text}${(++count)}"
+        }
         binding.image.setOnClickListener {
             startActivity(Intent(context, TestPagerActivity::class.java))
             /*val input = Environment.getExternalStorageDirectory().absolutePath + "/testq.mp4"
@@ -97,7 +101,7 @@ class MainActivity : BaseActivity(), ResponseListener<APIBaseResponse<StartUpDat
 //        Test.testParseData(this)
 //        Test.testRoom(this)
         TestAsm.test(this)
-//        startup()
+        startup()
         TestAsm.testStaticModify()
 
         TestJava.insertKotlin()

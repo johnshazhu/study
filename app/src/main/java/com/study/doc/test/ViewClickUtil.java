@@ -3,7 +3,7 @@ package com.study.doc.test;
 import android.util.Log;
 import android.view.View;
 
-import com.lib.annotation.Insert;
+import com.lib.annotation.Inject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public class ViewClickUtil {
     private static final Map<Integer, Long> clickTimeMap = new HashMap<>();
     private ViewClickUtil() {}
 
-    @Insert(target = View.OnClickListener.class, name = "onClick", before = true)
+    @Inject(target = View.OnClickListener.class, name = "onClick", before = true)
     public static boolean onClick(View v) {
         long lastClickTime = 0;
         long now = System.currentTimeMillis();
@@ -23,7 +23,7 @@ public class ViewClickUtil {
                 lastClickTime = clickTimeMap.get(identityHashCode);
             }
 
-            Log.i("isFastClick", "lastClickTime : " + lastClickTime + ", now : " + now + ", diff : " + (now - lastClickTime));
+            Log.i("xdebug", "lastClickTime : " + lastClickTime + ", now : " + now + ", diff : " + (now - lastClickTime));
             if (Math.abs(now - lastClickTime) < 1000) {
                 clickTimeMap.remove(identityHashCode);
                 return true;

@@ -7,8 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(value = {ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 @Retention(value = RetentionPolicy.RUNTIME)
-public @interface Insert {
-    Class target() default EmptyInsertClass.class;
+public @interface Inject {
+    Class target() default EmptyInjectClass.class;
     String classPath() default "";
     String name() default "";
     String addCatch() default "";

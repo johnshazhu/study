@@ -1,7 +1,7 @@
 include ':lib_core_util'
 include ':lib_core_api'
-include ':lib_ffmpeg'
-include ':app', ':lib_core', ':lib_okhttp', ':lib_database', ':lib_annotation', ':lib_annotation_transform', ':lib_glide', ':lib_picasso'
-setBinding(new Binding([gradle: this]))
+//include ':lib_ffmpeg'
+include ':app', ':lib_core', ':lib_okhttp', ':lib_database', ':lib_glide', ':lib_picasso'
+//setBinding(new Binding([gradle: this]))
 //evaluate(new File(settingsDir, 'flutter_module/.android/include_flutter.groovy'))
 //include ':flutter_module'

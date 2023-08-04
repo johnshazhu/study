@@ -44,5 +44,5 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
-    implementation "com.lib.annotation:lib_annotation:$lib_annotation_version"
+    implementation "io.github.johnshazhu:lib_annotation:$lib_annotation_version"
 }

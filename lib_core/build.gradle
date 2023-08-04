@@ -54,7 +54,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_rxjava2_adapter_version"
     implementation "org.javassist:javassist:$javassist_version"
-
-    glideImplementation project(':lib_glide')
-    picassoImplementation project(':lib_picasso')
+    implementation project(':lib_glide')
+//    glideImplementation project(':lib_glide')
+//    picassoImplementation project(':lib_picasso')
 }
