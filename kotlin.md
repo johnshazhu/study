@@ -1,5 +1,8 @@
 翻译来自[asynchronous-programming-with-coroutines](https://kotlinlang.org/spec/asynchronous-programming-with-coroutines.html)的内容。  
 
+[协程实现细节](https://kt.academy/article/cc-under-the-hood#definition-2)  
+
+
 1、suspendinging函数  
 
   kotlin中以suspend关键字来标识suspending函数。  
