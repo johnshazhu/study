@@ -1,6 +1,14 @@
 翻译来自[asynchronous-programming-with-coroutines](https://kotlinlang.org/spec/asynchronous-programming-with-coroutines.html)的内容。  
 
+[挂起和恢复](https://kt.academy/article/cc-suspension)  
+
 [协程实现细节](https://kt.academy/article/cc-under-the-hood#definition-2)  
+
+[CoroutineContext](https://kt.academy/article/cc-coroutine-context)  
+
+[Dispatcher](https://kt.academy/article/cc-dispatchers)  
+
+[最佳实践](https://kt.academy/article/cc-best-practices)
 
 
 1、suspendinging函数  
@@ -173,7 +181,29 @@
   ```
     val intercepted = continuation.context[ContinuationInterceptor]?.interceptContinuation(continuation) ?: continuation
   ```
-  
+  5、Coroutine intrinsics(协程内部？)
+    访问低级的连续是用一些有限的内置的内部函数来实现的，这些函数构成了整个协程的API。其余的异步编程支持是以库kotlinx.coroutines的形式提供。  
+    
+    完整的协程内置API如下，所有这些都在标准库下的kotlin.coroutines.intrinsics中。  
+    ```
+        // 创建一个与扩展receiver挂起函数相对应的的协程，在完成时调用传递过来的完成连续（continuation）。  
+        // 这个函数不会启动协程，要启动协程的话，需要在创建的continuation对象上调用Continuation<T>.resumeWith。
+        fun <T> (suspend () -> T).createCoroutineUnintercepted(completion: Continuation<T>): Continuation<Unit>
+        
+        // 提供对当前continuation的访问，如果它的lambda返回COROUTINE_SUSPENDED，那么会挂起协程。和Continuation<T>.resumeWith  
+        // (启动或恢复协程)一起，这些函数构成了kotlin编译器内置的协程API。
+        suspend fun <T> suspendCoroutineUninterceptedOrReturn(block: (Continuation<T>) -> Any?): T
+        
+        fun <T> (suspend () -> T).startCoroutineUninterceptedOrReturn(completion: Continuation<T>): Any?
+        
+        fun <T> Continuation<T>.intercepted(): Continuation<T>
+        
+        // Additional functions for types with explicit receiver
+        
+        fun <R, T> (suspend R.() -> T).createCoroutineUnintercepted(completion: Continuation<T>): Continuation<Unit>
+        
+        fun <T> (suspend R.() -> T).startCoroutineUninterceptedOrReturn(completion: Continuation<T>): Any?
+    ```
 
 
  
