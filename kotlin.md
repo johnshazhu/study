@@ -11,7 +11,7 @@
 [最佳实践](https://kt.academy/article/cc-best-practices)
 
 
-1、suspendinging函数  
+1、suspending函数  
 
   kotlin中以suspend关键字来标识suspending函数。  
   
